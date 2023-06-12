@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+*.log
+tmp/
+__pycache__/
+*.pyc
+*~
+output/*
+input_data/*
+!*/.gitkeep

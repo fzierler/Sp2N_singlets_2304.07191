@@ -1,0 +1,19 @@
+file;hits;fitη;fitπ;fit_sigma;fit_a0;fit_rho;Nconf;hdf5file;group;name;vsub;deriv;gs_sub;constant;
+runsSp4/Lt40Ls32beta7.2m1-0.799m2-0.799;224;-1;(15, 20);(6, 10);(11, 19);(15, 20);373;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M8;true;true;true;false
+runsSp4/Lt36Ls28beta7.2m1-0.794m2-0.794;288;(8, 14);(10, 18);(6, 9);-1;(11, 18);501;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M7;true;true;false;false
+runsSp4/Lt36Ls24beta7.2m1-0.79m2-0.79;384;(6, 11);(11, 18);-1;(10, 15);(12, 18);200;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M4;true;true;true;false
+runsSp4/Lt36Ls24beta7.2m1-0.78m2-0.78;384;(6, 11);(11, 18);-1;(10, 15);(12, 18);200;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M4;true;true;true;false
+runsSp4/Lt36Ls24beta7.2m1-0.77m2-0.77;384;(6, 11);(11, 18);-1;(10, 15);(12, 18);200;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M4;true;true;true;false
+runsSp4/Lt36Ls16beta7.2m1-0.76m2-0.76;384;(9, 14);(11, 18);(4, 8);(9, 14);(12, 18);200;out_spectrum_discon.hdf5;Sp(4);Sp4B3L1M3;true;true;true;false
+runsSp4/Lt32Ls24beta6.9m1-0.924m2-0.924;320;(8, 12);(9, 16);(4, 10);(7, 10);(10, 16);491;out_spectrum_discon.hdf5;Sp(4);Sp4B1L1M7;true;true;true;false
+runsSp4/Lt32Ls24beta6.9m1-0.92m2-0.92;484;-1;(7, 16);(4, 8);(8, 12);(8, 16);503;out_spectrum_discon.hdf5;Sp(4);Sp4B1L1M6;true;true;true;false
+runsSp4/Lt32Ls16beta6.9m1-0.92m2-0.92;128;(6, 11);(9, 16);(5, 10);(7, 10);(9, 16);176;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M6;true;true;true;false
+runsSp4/Lt32Ls16beta6.9m1-0.91m2-0.91;256;(6, 11);(8, 16);-1;(7, 9);(9, 16);435;out_spectrum_discon.hdf5;Sp(4);Sp4B1L1M5;true;true;true;false
+runsSp4/Lt24Ls14beta6.9m1-0.91m2-0.91;256;(5, 10);(8, 12);(4, 7);(9, 12);(9, 12);513;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M5;true;true;true;false
+runsSp4/Lt32Ls16beta6.9m1-0.90m2-0.90;512;(6, 11);(9, 16);-1;(7, 10);(10, 16);547;out_spectrum_discon.hdf5;Sp(4);Sp4B1L1M4;true;true;true;false
+runsSp4/Lt24Ls14beta6.9m1-0.90m2-0.90;128;(6, 11);(8, 12);(4, 10);(7, 9);(9, 12);942;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M4;true;true;true;false
+runsSp4/Lt24Ls12beta6.9m1-0.90m2-0.90;128;(5, 10);(8, 12);(5, 9);(8, 10);(9, 12);2904;out_spectrum_discon.hdf5;Sp(4);Sp4B1L3M4;true;true;true;false
+runsSp4/Lt24Ls14beta6.9m1-0.89m2-0.89;128;(7, 11);(8, 12);(5, 9);(8, 11);(9, 12);461;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M3;true;true;true;false
+runsSp4/Lt24Ls12beta6.9m1-0.89m2-0.89;320;(5, 10);(8, 12);-1;(7, 11);(9, 12);1019;out_spectrum_discon.hdf5;Sp(4);Sp4B1L3M3;true;true;true;false
+runsSp4/Lt24Ls12beta6.9m1-0.87m2-0.87;128;(7, 11);(8, 12);(5, 8);(8, 10);(9, 12);1457;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M2;true;true;true;false
+runsSp4/Lt20Ls10beta6.9m1-0.87m2-0.87;128;(6, 9);(8, 10);(4, 7);(6, 10);(8, 10);976;out_spectrum_discon.hdf5;Sp(4);Sp4B1L2M3;true;true;true;false
