@@ -73,8 +73,8 @@ scatter!(plt3,x[iSU2],mηρ[iSU2],yerr=Δmηρ[iSU2],xerr=Δx[iSU2],color=:black
 scatter!(plt4,x[iSU2],mηπ[iSU2],yerr=Δmηπ[iSU2],xerr=Δx[iSU2],color=:black,label=L"\rm{SU(2)}(\beta=2.0)",ms=8,markershape=:pentagon)
 scatter!(plt3,x[iβ1],mηρ[iβ1],yerr=Δmηρ[iβ1],xerr=Δx[iβ1],color=:white,label=L"\rm{Sp(4)}(\beta=6.9)",ms=8,markershape=:rect)
 scatter!(plt4,x[iβ1],mηπ[iβ1],yerr=Δmηπ[iβ1],xerr=Δx[iβ1],color=:white,label=L"\rm{Sp(4)}(\beta=6.9)",ms=8,markershape=:rect)
-scatter!(plt3,x[iβ2],mηρ[iβ2],yerr=Δmηρ[iβ2],xerr=Δx[iβ2],color=:white,label=L"\rm{Sp(4)}(\beta=6.9)",ms=8,markershape=:circle)
-scatter!(plt4,x[iβ2],mηπ[iβ2],yerr=Δmηπ[iβ2],xerr=Δx[iβ2],color=:white,label=L"\rm{Sp(4)}(\beta=6.9)",ms=8,markershape=:circle)
+scatter!(plt3,x[iβ2],mηρ[iβ2],yerr=Δmηρ[iβ2],xerr=Δx[iβ2],color=:white,label=L"\rm{Sp(4)}(\beta=7.2)",ms=8,markershape=:circle)
+scatter!(plt4,x[iβ2],mηπ[iβ2],yerr=Δmηπ[iβ2],xerr=Δx[iβ2],color=:white,label=L"\rm{Sp(4)}(\beta=7.2)",ms=8,markershape=:circle)
 plot!(plt3,xlims=(0.63,0.9),ylims=(0.55,1.42),xlabel=L"m_\pi / m_\rho",ylabel=L" m_{\eta'} / m_\rho ")
 plot!(plt4,xlims=(0.63,0.9),ylims=(0.98,1.50),xlabel=L"m_\pi / m_\rho",ylabel=L" m_{\eta'} / m_\pi ")
 
