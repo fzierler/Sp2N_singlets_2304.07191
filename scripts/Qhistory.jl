@@ -48,7 +48,7 @@ function splithdf5_Q(hdf5file,hdf5group,type,Qs,ind;absQ=false)
         hdf5groupQ = joinpath(hdf5group,"Q$((Qs[i]))")
         fid  = h5open(file,"cw")
         # loop over all unchanged entries measurements and merge
-        identical = ["lofgile","sources","beta","gauge group","lattice","quarkmasses"]
+        identical = ["logfile","sources","beta","gauge group","lattice","quarkmasses"]
         for property in identical
             if haskey(hdf5f,property)
                 dat = read(hdf5f,property)

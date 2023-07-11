@@ -15,7 +15,7 @@ function writehdf5_spectrum_disconnected(file,type,nhits;filterkey=false,key_pat
         h5write(hdf5fn,"beta",couplingβ(file))
         h5write(hdf5fn,"quarkmasses",quarkmasses(file))
         h5write(hdf5fn,"lattice",latticesize(file))
-        h5write(hdf5fn,"lofgile",filename)
+        h5write(hdf5fn,"logfile",filename)
         h5write(hdf5fn,"sources",nhits)
     end
     # read correlator data
@@ -44,7 +44,7 @@ function writehdf5_spectrum_connected(file,type;abspath="",fnid = "")
     h5write(hdf5fn,"beta",couplingβ(file))
     h5write(hdf5fn,"quarkmasses",quarkmasses(file))
     h5write(hdf5fn,"lattice",latticesize(file))
-    h5write(hdf5fn,"lofgile",filename)
+    h5write(hdf5fn,"logfile",filename)
     h5write(hdf5fn,"measurement_type",type)
     # read correlator data
     c = correlators(file,type;withsource=false,average=true)
@@ -69,7 +69,7 @@ function writehdf5_spectrum_connected(file,typeU,typeD,typeUD;abspath="")
     h5write(hdf5fn,"beta",couplingβ(file))
     h5write(hdf5fn,"quarkmasses",quarkmasses(file))
     h5write(hdf5fn,"lattice",latticesize(file))
-    h5write(hdf5fn,"lofgile",filename)
+    h5write(hdf5fn,"logfile",filename)
     h5write(hdf5fn,"measurement_type",[typeU,typeD,typeUD])
     # read correlator data
     for type in (typeU,typeD,typeUD)
@@ -96,7 +96,7 @@ function writehdf5_spectrum_disconnected_nondeg(file,type,nhits,masses;filterkey
         h5write(hdf5fn,"beta",couplingβ(file))
         h5write(hdf5fn,"quarkmasses",quarkmasses(file))
         h5write(hdf5fn,"lattice",latticesize(file))
-        h5write(hdf5fn,"lofgile",filename)
+        h5write(hdf5fn,"logfile",filename)
         h5write(hdf5fn,"sources",nhits)
     end
     # read correlator data
@@ -140,7 +140,7 @@ function mergehdf_discon(file,type,file1,file2)
         dat = cat(read(hdf5_f1,Γ)[1:N,:,:],read(hdf5_f2,Γ)[1:N,:,:],dims=2)
         h5write(file,Γ,dat)
     end
-    h5write(file,"lofgile",file1*file1)
+    h5write(file,"logfile",file1*file1)
     h5write(file,"sources",read(hdf5_f1,"sources")+read(hdf5_f2,"sources"))
 end
 function mergehdf_discon(file,type,file1)
