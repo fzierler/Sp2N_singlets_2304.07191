@@ -24,7 +24,7 @@ end
 # time averaged construction of disconnected diagrams
 function hit_time_average_vacuum(m;rescale=1)
     nconf, nhits, T = size(m)
-    timavg = zeros(eltype(m),(nconf,T)) 
+    timavg = zeros(eltype(m),(nconf,T))
     @inbounds for t in 1:T, hit1 in 1:nhits, conf in 1:nconf
         timavg[conf,t] += m[conf,hit1,t]
     end
@@ -59,12 +59,12 @@ function hit_time_average_disconnected_vacuum(m;rescale=1)
     # (2) average over all time separations
     # (3) normalize wrt. time and hit average
     v1 = hit_time_average_vacuum(m[:,1:hitsd2,:])
-    v1 = dropdims(mean(v1,dims=1),dims=1) 
-    v1 = mean(v1[2:end]) 
+    v1 = dropdims(mean(v1,dims=1),dims=1)
+    v1 = mean(v1[2:end])
     #@show v1^2*rescale
     v2 = hit_time_average_vacuum(m[:,hitsd2+1:end,:])
-    v2 = dropdims(mean(v2,dims=1),dims=1) 
-    v2 = mean(v2[2:end]) 
+    v2 = dropdims(mean(v2,dims=1),dims=1)
+    v2 = mean(v2[2:end])
     # now fully disconnected
     timavg = zeros(eltype(m),(nconf,T))
     norm   = T*div(nhits,2)^2
@@ -85,10 +85,10 @@ function hit_time_average_disconnected_vacuum(m;rescale=1)
 end
 function hit_time_average_disconnected_vacuum(m1,m2;rescale=1)
     v1 = hit_time_average_vacuum(m1)
-    v1 = dropdims(mean(v1,dims=1),dims=1) 
-    #v1 = mean(v1[2:end]) 
+    v1 = dropdims(mean(v1,dims=1),dims=1)
+    #v1 = mean(v1[2:end])
     v2 = hit_time_average_vacuum(m2)
-    v2 = dropdims(mean(v2,dims=1),dims=1) 
+    v2 = dropdims(mean(v2,dims=1),dims=1)
     # (1) average over different hits
     # (2) average over all time separations
     # (3) normalize wrt. time and hit average
@@ -148,73 +148,73 @@ function disconnected_eta_MC(hdf5file,hdf5group,type,hits;maxhits=hits,vsub=fals
     c = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,filterkey=false,key_pattern=key,maxhits)
     return vsub ? hit_time_average_disconnected_vacuum(c;kws...) : hit_time_average_disconnected(c;kws...)
 end
-function disconnected_eta(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)    
+function disconnected_eta(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)
     c1 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(file)))
     _disconnected_nondeg(c1,c2,τ;sign=+1,kws...)
 end
-function disconnected_eta(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)    
+function disconnected_eta(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)
     c1 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(hdf5file,hdf5group)))
     _disconnected_nondeg(c1,c2,τ;sign=+1,kws...)
 end
-function disconnected_pi0(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)    
+function disconnected_pi0(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)
     c1 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(file)))
-    _disconnected_nondeg(c1,c2,τ;sign=-1,kws...) 
+    _disconnected_nondeg(c1,c2,τ;sign=-1,kws...)
 end
-function disconnected_pi0(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)    
+function disconnected_pi0(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)
     c1 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(hdf5file,hdf5group)))
-    _disconnected_nondeg(c1,c2,τ;sign=-1,kws...) 
+    _disconnected_nondeg(c1,c2,τ;sign=-1,kws...)
 end
-function disconnected_eta_MC(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)    
+function disconnected_eta_MC(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)
     c1 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(file)))
     _disconnected_nondeg_MC(c1,c2,τ;sign=+1,kws...)
 end
-function disconnected_eta_MC(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)    
+function disconnected_eta_MC(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,therm=0,kws...)
     c1 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(hdf5file,hdf5group)))
     _disconnected_nondeg_MC(c1,c2,τ;sign=+1,kws...)
 end
-function disconnected_pi0_MC(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)    
+function disconnected_pi0_MC(file,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)
     c1 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(file,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(file)))
-    _disconnected_nondeg_MC(c1,c2,τ;sign=-1,kws...) 
+    _disconnected_nondeg_MC(c1,c2,τ;sign=-1,kws...)
 end
-function disconnected_pi0_MC(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)    
+function disconnected_pi0_MC(hdf5file,hdf5group,type,hits,m1,m2;key="g5_disc_re",maxhits=hits,kws...)
     c1 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m1,filterkey=false,key_pattern=key,maxhits)
     c2 = correlators(hdf5file,hdf5group,type,key,hits;withsource=true,average=false,masses=true,mass=m2,filterkey=false,key_pattern=key,maxhits)
     τ = max(1.0,autocorrelation_time(plaquettes(hdf5file,hdf5group)))
-    _disconnected_nondeg_MC(c1,c2,τ;sign=-1,kws...) 
+    _disconnected_nondeg_MC(c1,c2,τ;sign=-1,kws...)
 end
-# Methods for already parsed and pre-processed data 
+# Methods for already parsed and pre-processed data
 function _disconnected_eta(flattened,τ;maxconf=typemax(Int),vsub=false,kws...)
     timavg = vsub ? hit_time_average_disconnected_vacuum(flattened;kws...) : hit_time_average_disconnected(flattened;kws...)
     nconf  = size(timavg)[1]
-    n = min(nconf,maxconf) 
+    n = min(nconf,maxconf)
     timavg = timavg[1:n,:]
     C  = mean(timavg,dims=1)[1,:]
     ΔC = sqrt.(var(timavg,dims=1)[1,:]/n)
     return C, ΔC*sqrt(τ)
 end
-function _disconnected_nondeg(flat1,flat2,τ;sign,kws...)    
-    t = _disconnected_nondeg_MC(flat1,flat2,τ;sign,kws...)  
+function _disconnected_nondeg(flat1,flat2,τ;sign,kws...)
+    t = _disconnected_nondeg_MC(flat1,flat2,τ;sign,kws...)
     n = size(t)[1]
     C = mean(t[1:n,:],dims=1)[1,:]
-    ΔC = sqrt.(var(t[1:n,:],dims=1)[1,:])/sqrt(n/τ)    
+    ΔC = sqrt.(var(t[1:n,:],dims=1)[1,:])/sqrt(n/τ)
     return C, ΔC
 end
-function _disconnected_nondeg_MC(flat1,flat2,τ;sign,vsub,kws...)  
-    if vsub  
+function _disconnected_nondeg_MC(flat1,flat2,τ;sign,vsub,kws...)
+    if vsub
         t11 = hit_time_average_disconnected_vacuum(flat1;kws...)
         t22 = hit_time_average_disconnected_vacuum(flat2;kws...)
         t12 = hit_time_average_disconnected_vacuum(flat1,flat2;kws...)
@@ -230,12 +230,12 @@ end
 function disconnected_vacuum(file,type,hits;key="g5_disc_re",maxhits=hits,rescale)
     c = correlators(file,type,key,hits;maxhits,withsource=true,average=false,filterkey=false,key_pattern=key)
     v = hit_time_average_vacuum(c)
-    v = mean(v) 
+    v = mean(v)
     return v*rescale
 end
 function disconnected_vacuum(hdf5file,hdf5group,type,hits;key="g5_disc_re",maxhits=hits,rescale)
     c = correlators(hdf5file,hdf5group,type,key,hits;maxhits,withsource=true,average=false,filterkey=false,key_pattern=key)
     v = hit_time_average_vacuum(c)
-    v = mean(v) 
+    v = mean(v)
     return v*rescale
 end

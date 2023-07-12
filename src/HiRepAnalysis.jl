@@ -13,7 +13,7 @@ using Roots
 gr(legendfontsize=12,tickfontsize=12,ms=7,msw=2)
 
 include("average.jl")
-export average_plaquette, average_correlator 
+export average_plaquette, average_correlator
 include("fitcorr.jl")
 export fitmass, fit_corr, fit_corr_bars
 include("mass.jl")

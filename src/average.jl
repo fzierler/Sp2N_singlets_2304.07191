@@ -43,13 +43,13 @@ function average_plaquette(plaqs::Vector{S};autocor=true) where S <: Number
 end
 function averagevectors!(corrs,T)
     tmp = zeros(T)
-    keys_corr = keys(corrs[1]) 
+    keys_corr = keys(corrs[1])
     for dict in corrs
         for key in ["","g0","g5","g0g5"], suffix in ["","_re","_im"]
             k1 = key*"g1"*suffix
             k2 = key*"g2"*suffix
             k3 = key*"g3"*suffix
-            if k1 in keys_corr && k2 in keys_corr && k3 in keys_corr 
+            if k1 in keys_corr && k2 in keys_corr && k3 in keys_corr
                 @. tmp = (dict[k1] + dict[k2] + dict[k3])/3
                 dict[k1] .= dict[k2] .= dict[k3] .= tmp
             end

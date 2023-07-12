@@ -121,7 +121,7 @@ function mergehdf_discon(file,type,file1,file2)
     hdf5_f1 = h5open(file1, "r")
     hdf5_f2 = h5open(file2, "r")
     # test that we used the same sources in both cases
-    @assert keys(hdf5_f1) == keys(hdf5_f2)     
+    @assert keys(hdf5_f1) == keys(hdf5_f2)
     disc_measurements = filter( x -> contains(x,type), keys(hdf5_f1))
     # test that we compare data from the same lattice setup
     identical = ["beta","gauge group", "lattice",  "plaquette" ,"quarkmasses","configurations"]
@@ -132,7 +132,7 @@ function mergehdf_discon(file,type,file1,file2)
     # loop over all measurements and merge
     N1 = size(read(hdf5_f1,disc_measurements[1]))[1]
     N2 = size(read(hdf5_f2,disc_measurements[1]))[1]
-    if N1 != N2 
+    if N1 != N2
         @warn "mismatch file1 N=$N1 and file N=$N2"
     end
     N = min(N1,N2)
@@ -148,16 +148,16 @@ function mergehdf_discon(file,type,file1)
     cp(file1,file;force=true)
 end
 function fermion_masses_from_filename(file)
-    p1 = last(findfirst("m1",file)) 
+    p1 = last(findfirst("m1",file))
     p2 = first(findfirst("m2",file))
-    p3 = last(findfirst("m2",file)) 
-    p4 = findnext('/',file,p3) 
+    p3 = last(findfirst("m2",file))
+    p4 = findnext('/',file,p3)
     # create array of masses for matching of output
-    m  = [file[p1+1:p2-1],file[p3+1:p4-1]] 
+    m  = [file[p1+1:p2-1],file[p3+1:p4-1]]
     return m
 end
 function logfiles_to_hdf5(name,path,hdfpath,fileC,typeC,typeD)
-    dir = joinpath(path,name) 
+    dir = joinpath(path,name)
     discon_logs = filter(contains("discon"),readdir(dir,join=true))
     # the fifth element after splitting contains the number of hits
     hits_strings = getindex.(split.(basename.(discon_logs),"_"),4)

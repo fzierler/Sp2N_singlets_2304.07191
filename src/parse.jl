@@ -1,62 +1,62 @@
 function gaugegroup(file)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return read(hdf5,"gauge group")
-    else 
+    else
         return gaugegroup_log(file)
     end
 end
 function quarkmasses(file)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return read(hdf5,"quarkmasses")
-    else 
+    else
         return quarkmasses_log(file)
     end
 end
 function latticesize(file)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return read(hdf5,"lattice")
-    else 
+    else
         return latticesize_log(file)
     end
 end
 function correlators(file,type,key;kws...)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return read(hdf5,"$(type)_$(key)")
-    else 
+    else
         return correlators_logfile(file,type,key;kws...)
     end
 end
 function correlators(file,type,key,nhits::Int;maxhits,masses=false,mass=nothing,kws...)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         if !masses
            corr = read(hdf5,"$(type)_$(key)")[:,1:min(maxhits,nhits),:]
         else
            corr = read(hdf5,"$(type)_$(key)_$(mass)")[:,1:min(maxhits,nhits),:]
         end
-        return corr 
-    else 
+        return corr
+    else
         d = correlators_logfile(file,type,key;masses,mass,kws...)
         return flatten_disc(d,nhits;rescale=1)
     end
 end
 function plaquettes(file;therm=0,step=1)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return read(hdf5,"plaquette")[therm+1:step:end]
-    else 
+    else
         return plaquettes_log(file;therm,step)
     end
 end
 function nconfigs(file)
-    if HDF5.ishdf5(file) 
+    if HDF5.ishdf5(file)
         hdf5 = h5open(file, "r")
         return length(read(hdf5,"configurations"))
-    else 
+    else
         return nconfigs_log(file)
     end
 end
@@ -77,7 +77,7 @@ function latticesize_log(file)
             return latticesize
         end
     end
-end   
+end
 function correlators_logfile(file,type,key;kws...)
     corrs = correlators(file,type;filterkey=true,key_pattern=key,kws...)
     return reduce(hcat,getindex.(corrs,key))
@@ -95,7 +95,7 @@ function correlators(file,type;withsource=false,average=true,masses=false,mass="
             if masses
                 occursin("mass=$mass",line) || continue
             end
-            if filterkey                    
+            if filterkey
                 occursin(key_pattern,line) || continue
             end
             # get configuration number
@@ -140,7 +140,7 @@ function correlators(file,type;withsource=false,average=true,masses=false,mass="
         if !withsource
             # If we only have one source at a time and possibly one configuration
             # at a time. Under these circumstances the method used to separate distinct
-            # measurements fails. In this case the end of measurement on a given confiuration 
+            # measurements fails. In this case the end of measurement on a given confiuration
             # is signalled by a line that reads:
             # [MAIN][0]Configuration #N: analysed in [a sec b usec]
             if occursin("analysed",line)
@@ -240,7 +240,7 @@ function fileinfo(file)
 end
 #################################################
 # Disconnected Measurements from /Disocnnected  #
-################################################# 
+#################################################
 function dilution(file)
     for line in eachline(file)
         if occursin("will be used",line)
@@ -296,7 +296,7 @@ function confignames(file)
     return fns
 end
 function h5property(hdf5file,hdf5group,property)
-    @assert HDF5.ishdf5(hdf5file) 
+    @assert HDF5.ishdf5(hdf5file)
     hdf5 = h5open(hdf5file, "r")
     prop = joinpath(hdf5group,property)
     return read(hdf5,prop)
@@ -309,7 +309,7 @@ couplingβ(hdf5file,hdf5group) = h5property(hdf5file,hdf5group,"beta")
 correlators(hdf5file,hdf5group,type,key;kws...) = h5property(hdf5file,hdf5group,"$(type)_$(key)")
 plaquettes(hdf5file,hdf5group;therm=0,step=1) = h5property(hdf5file,hdf5group,"plaquette")[therm+1:step:end]
 function correlators(hdf5file,hdf5group,type,key,nhits::Int;maxhits,masses=false,mass=nothing,kws...)
-    @assert HDF5.ishdf5(hdf5file) 
+    @assert HDF5.ishdf5(hdf5file)
     hdf5 = h5open(hdf5file, "r")
     if !masses
         prop = joinpath(hdf5group,"$(type)_$(key)")
@@ -317,7 +317,7 @@ function correlators(hdf5file,hdf5group,type,key,nhits::Int;maxhits,masses=false
         prop = joinpath(hdf5group,"$(type)_$(key)_$(mass)")
     end
     corr = read(hdf5,prop)[:,1:min(maxhits,nhits),:]
-    return corr 
+    return corr
 end
 function correlators(hdf5file,hdf5group,typeU,typeD,key;kws...)
     cU = correlators(hdf5file,hdf5group,typeU,key;kws...)

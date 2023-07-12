@@ -46,4 +46,3 @@ lims_x, lims_y = xlims(plt), ylims(plt)
 plot!(plt,[0.2,0.7],[0.2,0.7],label=L"\pi",color=blue(first(β[i1])),xlims=lims_x,ylims=lims_y)
 plot!(plt,legend=:bottomright)
 savefig("output/figures/eta_Sp4_w0.pdf")
-

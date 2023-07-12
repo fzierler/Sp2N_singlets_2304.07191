@@ -1,7 +1,7 @@
 using HiRepAnalysis
 using DelimitedFiles
 using HDF5
-# 
+#
 function Q_of_meas(conf_meas,conf,Qint)
     N = min(length(conf_meas),length(conf))
     Qs  = zeros(N)
@@ -31,16 +31,16 @@ function splithdf5_Q(hdf5file,hdf5group,type,Qs,ind;absQ=false)
     measurements = filter( x -> contains(x,type), keys(hdf5f))
     for i in eachindex(ind)
         absQ && Qs[i] <= 0 && continue
-        # create hdf file for fixed topological sector 
+        # create hdf file for fixed topological sector
         # obtain path of the current
         if absQ
             file = "output/data_fixed_absQ.hdf5"
             if -Qs[i] ∈ Qs
                 i_neg = findfirst(isequal(-Qs[i]),Qs)
-                index = vcat(ind[i],ind[i_neg]) 
+                index = vcat(ind[i],ind[i_neg])
             else
                 index = ind[i]
-            end 
+            end
         else
             file = "output/data_fixed_Q.hdf5"
             index = ind[i]
@@ -69,7 +69,7 @@ function splithdf5_Q(hdf5file,hdf5group,type,Qs,ind;absQ=false)
             end
         end
         close(fid)
-    end     
+    end
 end
 function mesons_in_flow_scale(hdf5file)
     Qdir = "output/Qhistories/"
@@ -77,7 +77,7 @@ function mesons_in_flow_scale(hdf5file)
         file = joinpath("output","Qhistories",ensemble)
         hdf5groupC = joinpath("runsSp4",ensemble,"out_spectrum")
         hdf5groupD = joinpath("runsSp4",ensemble,"out_spectrum_discon")
-        
+
         typeD = "DISCON_SEMWALL SINGLET"
         typeC = "DEFAULT_SEMWALL TRIPLET"
 

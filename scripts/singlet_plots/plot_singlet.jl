@@ -11,10 +11,10 @@ blue(β) = parametric_colour("Blues",β)
 green(β) = parametric_colour("Greens",β)
 orange(β) = parametric_colour("Oranges",β)
 
-#hardcode markershapes for FIGURE V 
-function bw_shape(β) 
-    β≈6.9 && return :circle 
-    β≈7.2 && return :rect 
+#hardcode markershapes for FIGURE V
+function bw_shape(β)
+    β≈6.9 && return :circle
+    β≈7.2 && return :rect
     β≈2   && return :pentagon
 end
 bw_color(β) = ifelse(Base.isgreater(β,6.8),:white ,:black)
@@ -38,7 +38,7 @@ mηρ = @. mη / mρ
 Δmηρ = Δratio.(mη,mρ,Δmη,Δmρ)
 
 labelη = L"\eta'"
-labelσ = L"\sigma" 
+labelσ = L"\sigma"
 
 # get indices of comparable sets of ensembles_degenerate
 iβ1 = findall(x -> isapprox(6.9,x),β)
@@ -61,24 +61,24 @@ xd = 0.95*min_x:0.001:max_x*1.05
 
 # plot sigma meson for Sp(4)
 plot!(plt_σ_Sp4,xd,inv.(xd),label=L"\rho",color=green(iβ1[1]),lw=3)
-scatter!(plt_σ_Sp4,x[iβ1],xerr=Δx[iβ1],mσπ[iβ1],yerr=Δmσπ[iβ1],label=L"\sigma~(\beta = %$(first(β[iβ1])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))   
-scatter!(plt_σ_Sp4,x[iβ2],xerr=Δx[iβ2],mσπ[iβ2],yerr=Δmσπ[iβ2],label=L"\sigma~(\beta = %$(first(β[iβ2])))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))   
+scatter!(plt_σ_Sp4,x[iβ1],xerr=Δx[iβ1],mσπ[iβ1],yerr=Δmσπ[iβ1],label=L"\sigma~(\beta = %$(first(β[iβ1])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))
+scatter!(plt_σ_Sp4,x[iβ2],xerr=Δx[iβ2],mσπ[iβ2],yerr=Δmσπ[iβ2],label=L"\sigma~(\beta = %$(first(β[iβ2])))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))
 plot!(plt_σ_Sp4,xd,ones(length(xd)),label=L"\pi",color=blue(iβ1[1]),lw=3)
 
 # plot eta' meson for Sp(4)
 plot!(plt_η_Sp4,xd,inv.(xd),label=L"\rho",color=green(iβ1[1]),lw=3)
-scatter!(plt_η_Sp4,x[iβ1],xerr=Δx[iβ1],mηπ[iβ1],yerr=Δmηπ[iβ1],label=L"\eta'~(\beta = %$(first(β[iβ1])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))   
-scatter!(plt_η_Sp4,x[iβ2],xerr=Δx[iβ2],mηπ[iβ2],yerr=Δmηπ[iβ2],label=L"\eta'~(\beta = %$(first(β[iβ2])))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))   
+scatter!(plt_η_Sp4,x[iβ1],xerr=Δx[iβ1],mηπ[iβ1],yerr=Δmηπ[iβ1],label=L"\eta'~(\beta = %$(first(β[iβ1])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))
+scatter!(plt_η_Sp4,x[iβ2],xerr=Δx[iβ2],mηπ[iβ2],yerr=Δmηπ[iβ2],label=L"\eta'~(\beta = %$(first(β[iβ2])))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))
 plot!(plt_η_Sp4,xd,ones(length(xd)),label=L"\pi",color=blue(iβ1[1]),lw=3)
 
 # plot eta' meson vs vector meson for Sp(4)
-scatter!(plt_η_v_ρ_Sp4,x[iβ1],xerr=Δx[iβ1],mηρ[iβ1],yerr=Δmηρ[iβ1],label=L"\beta = %$(first(β[iβ1]))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))   
-scatter!(plt_η_v_ρ_Sp4,x[iβ2],xerr=Δx[iβ2],mηρ[iβ2],yerr=Δmηρ[iβ2],label=L"\beta = %$(first(β[iβ2]))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))   
+scatter!(plt_η_v_ρ_Sp4,x[iβ1],xerr=Δx[iβ1],mηρ[iβ1],yerr=Δmηρ[iβ1],label=L"\beta = %$(first(β[iβ1]))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))
+scatter!(plt_η_v_ρ_Sp4,x[iβ2],xerr=Δx[iβ2],mηρ[iβ2],yerr=Δmηρ[iβ2],label=L"\beta = %$(first(β[iβ2]))",markershape=:diamond,ms=10,markercolor=orange(first(β[iβ2])))
 plot!(plt_η_v_ρ_Sp4,[0.6,1.0],ones(2),label="",ls=:dash,colour=:black)
 
 # plot eta' meson for SU(2)
 plot!(plt_η_SU2,xd,inv.(xd),label=L"\rho",color=green(iβ1[1]),lw=3)
-scatter!(plt_η_SU2,x[iSU2],xerr=Δx[iSU2],mηπ[iSU2],yerr=Δmηπ[iSU2],label=L"\eta'~(\beta = %$(first(β[iSU2])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))   
+scatter!(plt_η_SU2,x[iSU2],xerr=Δx[iSU2],mηπ[iSU2],yerr=Δmηπ[iSU2],label=L"\eta'~(\beta = %$(first(β[iSU2])))",markershape=:circle,ms=8,markercolor=orange(first(β[iβ1])))
 plot!(plt_η_SU2,xd,ones(length(xd)),label=L"\pi",color=blue(iβ1[1]),lw=3)
 
 # set appropriate y-limits

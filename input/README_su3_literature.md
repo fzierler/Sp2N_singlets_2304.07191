@@ -8,7 +8,7 @@ The masses $m_{\eta'}$ and $m_{\pi}$ have been given in table I of Ref. [3]. The
 
 ## UKQCD2
 
-The masses of the $\pi$ and the $\rho$ meson have been taken form table I in Ref. [5]. The $\eta'$ mass of the heavier ensemble has been taken from table III. For the lighter ensemble the authors noted that they were "unable to obtain convincing and consistent fits". By comparing the ratio of the $\eta'$ correlators at different hopping parameters they obtain the estimate of $m_{\eta'}=0.40(5)$ -- see section IV and figure 7 of Ref. [5]. 
+The masses of the $\pi$ and the $\rho$ meson have been taken form table I in Ref. [5]. The $\eta'$ mass of the heavier ensemble has been taken from table III. For the lighter ensemble the authors noted that they were "unable to obtain convincing and consistent fits". By comparing the ratio of the $\eta'$ correlators at different hopping parameters they obtain the estimate of $m_{\eta'}=0.40(5)$ -- see section IV and figure 7 of Ref. [5].
 
 ## CLQCD
 
@@ -28,16 +28,16 @@ Data from Ref. [9], tables II ($m_\rho$), section II.A below equation (4) ($m_\r
 
 ## ETMC1
 
-The $\eta'$ masses were taken from table 4 of Ref. [10]. The masses of the pions and vector mesons were taken from table 3 of Ref. [11]. The twisted mass action introduces explicit strong isospin breaking. We estimate the flavour-symmetric mass for the pion $\pi$ as $m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} + m_{\pi^0} - \Delta m_{\pi^0})/2$ and its uncertainty by $\Delta m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} - m_{\pi^0} + \Delta m_{\pi^0})/2$. We estimate the flavour symmetric vector meson mass in the same way.  
+The $\eta'$ masses were taken from table 4 of Ref. [10]. The masses of the pions and vector mesons were taken from table 3 of Ref. [11]. The twisted mass action introduces explicit strong isospin breaking. We estimate the flavour-symmetric mass for the pion $\pi$ as $m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} + m_{\pi^0} - \Delta m_{\pi^0})/2$ and its uncertainty by $\Delta m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} - m_{\pi^0} + \Delta m_{\pi^0})/2$. We estimate the flavour symmetric vector meson mass in the same way.
 
 
 ## ETMC2
 
-The vector meson masses are taken from table III in Ref. [12]. We chose the results obtained from the inverse amplitude method (IAM) and symmetrize the uncertainties. The pion and $\eta'$ masses are taken from table II in Ref. [13]. For the $\eta'$ we use the mass obtained using fermionic interpolators. We estimate the flavour-symmetric mass for the pion $\pi$ as $m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} + m_{\pi^0} - \Delta m_{\pi^0})/2$ and its uncertainty by $\Delta m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} - m_{\pi^0} + \Delta m_{\pi^0})/2$. We convert these results into "physical" units using $a = 0.0931(2)~\rm{fm}$. 
+The vector meson masses are taken from table III in Ref. [12]. We chose the results obtained from the inverse amplitude method (IAM) and symmetrize the uncertainties. The pion and $\eta'$ masses are taken from table II in Ref. [13]. For the $\eta'$ we use the mass obtained using fermionic interpolators. We estimate the flavour-symmetric mass for the pion $\pi$ as $m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} + m_{\pi^0} - \Delta m_{\pi^0})/2$ and its uncertainty by $\Delta m_\pi \approx ( m_{\pi^\pm} + \Delta m_{\pi^\pm} - m_{\pi^0} + \Delta m_{\pi^0})/2$. We convert these results into "physical" units using $a = 0.0931(2)~\rm{fm}$.
 
-# References 
+# References
 
-[1] T. Struckmann et al. (TXL, T(X)L), Flavor singlet pseudoscalar masses in N(f) = 2 QCD, [Phys. Rev. D 63, 074503 (2001)](https://doi.org/10.1103/PhysRevD.63.074503), [arXiv:hep-lat/0010005](https://arxiv.org/abs/hep-lat/0010005). 
+[1] T. Struckmann et al. (TXL, T(X)L), Flavor singlet pseudoscalar masses in N(f) = 2 QCD, [Phys. Rev. D 63, 074503 (2001)](https://doi.org/10.1103/PhysRevD.63.074503), [arXiv:hep-lat/0010005](https://arxiv.org/abs/hep-lat/0010005).
 
 [2] G. S. Bali, B. Bolder, N. Eicker, T. Lippert, B. Orth, P. Ueberholz, K. Schilling, and T. Struckmann (TXL, T(X)L), Static potentials and glueball masses from QCD simulations with Wilson sea quarks, [Phys. Rev. D 62, 054503 (2000)](https://doi.org/10.1103/PhysRevD.62.054503), [arXiv:hep-lat/0003012](https://arxiv.org/abs/hep-lat/0003012).
 
@@ -55,13 +55,10 @@ The vector meson masses are taken from table III in Ref. [12]. We chose the resu
 
 [9] X. Jiang, W. Sun, F. Chen, Y. Chen, M. Gong, Z. Liu, and R. Zhang, η-glueball mixing from Nf = 2 lattice QCD, (2022), [arXiv:2205.12541 [hep-lat]](https://arxiv.org/abs/2205.12541).
 
-[10] K. Jansen, C. Michael, and C. Urbach (ETM), The eta-prime meson from lattice QCD, [Eur. Phys. J. C 58, 261 (2008)](https://doi.org/10.1140/epjc/s10052-008-0764-6), [arXiv:0804.3871 [hep-lat]](https://arxiv.org/abs/0804.3871). 
+[10] K. Jansen, C. Michael, and C. Urbach (ETM), The eta-prime meson from lattice QCD, [Eur. Phys. J. C 58, 261 (2008)](https://doi.org/10.1140/epjc/s10052-008-0764-6), [arXiv:0804.3871 [hep-lat]](https://arxiv.org/abs/0804.3871).
 
-[11] C. Urbach (European Twisted Mass), Lattice QCD with two light Wilson quarks and maximally twisted mass, [PoS LATTICE2007, 022 (2007)](https://doi.org/10.22323/1.042.0022), [arXiv:0710.1517 [hep-lat]](https://arxiv.org/abs/0710.1517). 
+[11] C. Urbach (European Twisted Mass), Lattice QCD with two light Wilson quarks and maximally twisted mass, [PoS LATTICE2007, 022 (2007)](https://doi.org/10.22323/1.042.0022), [arXiv:0710.1517 [hep-lat]](https://arxiv.org/abs/0710.1517).
 
-[12] M. Fischer, B. Kostrzewa, M. Mai, M. Petschlies, F. Pittler, M. Ueding, C. Urbach, and M. Werner (Extended Twisted Mass, ETM), The ρ-resonance from Nf = 2 lattice QCD including the physical pion mass, [Phys. Lett. B 819, 136449 (2021)](https://doi.org/10.1016/j.physletb.2021.136449), [arXiv:2006.13805 [hep-lat]](https://arxiv.org/abs/2006.13805). 
+[12] M. Fischer, B. Kostrzewa, M. Mai, M. Petschlies, F. Pittler, M. Ueding, C. Urbach, and M. Werner (Extended Twisted Mass, ETM), The ρ-resonance from Nf = 2 lattice QCD including the physical pion mass, [Phys. Lett. B 819, 136449 (2021)](https://doi.org/10.1016/j.physletb.2021.136449), [arXiv:2006.13805 [hep-lat]](https://arxiv.org/abs/2006.13805).
 
-[13] P. Dimopoulos et al., Topological susceptibility and η′ meson mass from Nf = 2 lattice QCD at the physical point, [Phys. Rev. D 99, 034511 (2019)](https://doi.org/10.1103/PhysRevD.99.034511), [arXiv:1812.08787 [hep-lat]](https://arxiv.org/abs/1812.08787). 
-
-
-
+[13] P. Dimopoulos et al., Topological susceptibility and η′ meson mass from Nf = 2 lattice QCD at the physical point, [Phys. Rev. D 99, 034511 (2019)](https://doi.org/10.1103/PhysRevD.99.034511), [arXiv:1812.08787 [hep-lat]](https://arxiv.org/abs/1812.08787).

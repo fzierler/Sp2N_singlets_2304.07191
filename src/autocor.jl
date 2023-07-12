@@ -36,4 +36,3 @@ function autocorrelation_time(O;correct=true,minlags=0)
         return τ
     end
 end
-

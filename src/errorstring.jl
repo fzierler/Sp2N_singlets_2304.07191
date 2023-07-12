@@ -69,9 +69,9 @@ function errorstring_smaller_two(a,Δa;nsig=2)
 end
 # CASE C: uncertainty < 1
 function errorstring_smaller_one(a,Δa;nsig=2,roundthreshold=2*10^(nsig-1))
-    # 1) take fractional part 
+    # 1) take fractional part
     # 2) drop the decimal point and the leading zero
-    # 3) count the number of leading zeros 
+    # 3) count the number of leading zeros
     # 4) pad on the right with zeros
     Δstring = string(Δa)
     fractionalΔstring =  Δstring[3:end]
@@ -90,24 +90,23 @@ function errorstring_smaller_one(a,Δa;nsig=2,roundthreshold=2*10^(nsig-1))
     if nsig > 1 && uncertainty >= roundthreshold
         uncertainty = Integer(round(uncertainty/10))
         nsig = nsig - 1
-    end 
+    end
     # In total we have n0 + nsig digits to display after the decimal point
     # 1) Start with the central value and split it into integer and fractional part
     # 2) then take (n0 + nsig) decimal points and stitch them together
     # 3) Add uncertainty in brackets
-    int, frac = split(string(a),'.') 
+    int, frac = split(string(a),'.')
     res = int*'.'*frac[1:n0+nsig]*"($uncertainty)"
     return res
 end
 function errorstring(a,Δa)
     (isnan(a) || isnan(Δa)) && return "NaN"
     (isinf(a) || isinf(Δa)) && return "Inf"
-    0.0001 < a < 10.0^6 || return errorstring_old(a,Δa)   
-    0.0001 < Δa < 10.0^6 || return errorstring_old(a,Δa)   
-    #0.0001 < a < 10.0^6 || error("Bracket notation: range not supported, value = $a")   
-    #0.0001 < Δa < 10.0^6 || error("Bracket notation: range not supported, value = $Δa")   
+    0.0001 < a < 10.0^6 || return errorstring_old(a,Δa)
+    0.0001 < Δa < 10.0^6 || return errorstring_old(a,Δa)
+    #0.0001 < a < 10.0^6 || error("Bracket notation: range not supported, value = $a")
+    #0.0001 < Δa < 10.0^6 || error("Bracket notation: range not supported, value = $Δa")
     (Δa >= 2) && (return errorstring_bigger_two(a,Δa;nsig=2))
     (Δa >= 1) && (return errorstring_smaller_two(a,Δa;nsig=2))
     return errorstring_smaller_one(a,Δa;nsig=2)
 end
-

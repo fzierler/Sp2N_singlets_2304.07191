@@ -29,7 +29,7 @@ mη   = data[:,18+o]
 mAWI = data[:,20+o]
 ΔmAWI= data[:,21+o]
 # obtain AWI ratio
-rq  = @. 2mAWI/mAWIdeg - 1 
+rq  = @. 2mAWI/mAWIdeg - 1
 Δrq = @. 2sqrt((ΔmAWI/mAWIdeg)^2 + (ΔmAWIdeg*mAWI/mAWIdeg^2)^2)
 
 Δratio(x,y,Δx,Δy) = sqrt((Δx / y)^2 + (Δy*x / y^2)^2)
@@ -38,7 +38,7 @@ rq  = @. 2mAWI/mAWIdeg - 1
 rπf = mπf ./ mπ0
 rρ0 = mρ0 ./ mπ0
 rρf = mρf ./ mπ0
-rη = mη ./ mπ0 
+rη = mη ./ mπ0
 Δrπf = Δratio.(mπf,mπ0,Δmπf,Δmπ0)
 Δrρ0 = Δratio.(mρ0,mπ0,Δmρ0,Δmπ0)
 Δrρf = Δratio.(mρf,mπ0,Δmρf,Δmπ0)
@@ -69,4 +69,3 @@ savefig(plt_pcac,"output/figures/Sp4_eta_nondeg_AWI.pdf")
 savefig(plt_pi,"output/figures/Sp4_eta_nondeg.pdf")
 plt_pi
 plt_pcac
-

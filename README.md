@@ -6,7 +6,7 @@ This repository contains the code used to prepare the plots and results included
 - Download the hdf5-file `data.hdf5` from Zenodo and place it in `input_data` (the directory can be modified in `main.jl`)
 - Download the file `WilsonFlow.zip`, decompress and place it in `input_data` (the directory can be modified in `main.jl`)
 - Run the analysis using `julia main.jl` within this directory
-- The figures and tables of [[2304.07191]](https://arxiv.org/abs/2304.07191v1) can then be found in 
+- The figures and tables of [[2304.07191]](https://arxiv.org/abs/2304.07191v1) can then be found in
     - `output/figures`
     - `output/tables`
 
@@ -22,14 +22,14 @@ The plots are made using [Plots.jl](https://zenodo.org/record/7994271) via the [
 
 ## Gradient flow analysis
 
-The gradient flow data is analysed using Ed Bennett's [flow_analysis](https://github.com/edbennett/flow_analysis). 
+The gradient flow data is analysed using Ed Bennett's [flow_analysis](https://github.com/edbennett/flow_analysis).
 
 ## Requirements
 - Python 3.8 (numpy, pre-commit, scipy, uncertainties)
 - julia 1.9
 - LaTeX (including PGFPlots)
 
-## References for SU(3) 
+## References for SU(3)
 
 In [[2304.07191]](https://arxiv.org/abs/2304.07191v1) we collected results from SU(3) gauge theory with two fundamental fermions. The data is given in tabulated form in `input/su3_literature.csv`.
 

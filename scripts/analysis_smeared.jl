@@ -3,7 +3,7 @@ using Plots
 using Statistics
 using LinearAlgebra
 using LaTeXStrings
-pgfplotsx(legendfontsize=18,labelfontsize=20,tickfontsize=18,titlefontsize=20,ms=5,framestyle=:box,legend=:outerright) 
+pgfplotsx(legendfontsize=18,labelfontsize=20,tickfontsize=18,titlefontsize=20,ms=5,framestyle=:box,legend=:outerright)
 
 hdf5groupN  = "runsSp4/Lt32Ls16beta6.9m1-0.90m2-0.90/out_spectrum/"
 hdf5groupD  = "runsSp4/Lt32Ls16beta6.9m1-0.90m2-0.90/out_spectrum_discon/"
@@ -44,8 +44,8 @@ r  = vec(mean(ratio,dims=2))
 
 
 # rescale with same factors as in _rescale_corrs
-LF =  L^3/2 
-@. r  *= LF 
+LF =  L^3/2
+@. r  *= LF
 @. C  *= LF
 @. Δr *= LF
 @. ΔC *= LF
@@ -66,15 +66,15 @@ sρ  = errorstring(mρ,Δmρ)
 sfπ = errorstring(fπ,Δfπ)
 
 # Improved singlet correlator
-Im  = CI - 2D 
+Im  = CI - 2D
 ΔIm = @. sqrt(ΔCI^2 + 4ΔD^2)
 
 # Smeared singlet correlator
-CS  = r - 2D 
+CS  = r - 2D
 ΔCS = @. sqrt(Δr^2 + 4ΔD^2)
 
 # direct singlet correlator
-CD  =  C -  2D 
+CD  =  C -  2D
 ΔCD = @. sqrt(ΔC^2 + 4ΔD^2)
 
 # effectivemasses

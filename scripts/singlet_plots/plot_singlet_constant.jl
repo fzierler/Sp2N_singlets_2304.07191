@@ -24,7 +24,7 @@ function read_prm(file,i)
     return odir, hits, fitη, fitπ, fitσ, fita0, fitρ ,fileM, fileS, group, name, vsub, deriv, gs_sub, constant
 end
 function singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,key,cut,gs_sub,sigma)
-    type  = "DISCON_SEMWALL SINGLET" 
+    type  = "DISCON_SEMWALL SINGLET"
     typeM = "DEFAULT_SEMWALL TRIPLET"
     T, L = latticesize(hdf5file,hdf5groupM)[1:2]
     rescale = (L^3)^2 /L^3
@@ -48,7 +48,7 @@ function constant_plot()
     G = gaugegroup(hdf5file,hdf5groupM)
     β = couplingβ(hdf5file,hdf5groupM)
     T, L = latticesize(hdf5file,hdf5groupM)[1:2]
-    typeM, type = "DEFAULT_SEMWALL TRIPLET", "DISCON_SEMWALL SINGLET" 
+    typeM, type = "DEFAULT_SEMWALL TRIPLET", "DISCON_SEMWALL SINGLET"
     rescale = (L^3)^2 /L^3
 
     # connected pion correlator
@@ -56,10 +56,10 @@ function constant_plot()
     HiRepAnalysis._rescale_corrs!(Cπ, ΔCπ2, L)
     ΔCπ = sqrt.(ΔCπ2)
     # connected eta' correlator
-    gs_sub = false # do not perform ground state subtraction 
+    gs_sub = false # do not perform ground state subtraction
     C, ΔC, Cd, ΔCd = singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,"g5",fitπ,gs_sub,false)
     #title for plotting
-    title = L"$ %$(T)\times %$(L)^3, \beta=%$β, %$G, m_q=%$(first(m))$, $n_{\rm src} = %$hits$"      
+    title = L"$ %$(T)\times %$(L)^3, \beta=%$β, %$G, m_q=%$(first(m))$, $n_{\rm src} = %$hits$"
     label = L"C_{\eta'}(t)"
     plot!(plt_corr_pi_eta,title=title,legend=:top,yaxis=:log10)
     scatter!(plt_corr_pi_eta,2Cπ,yerr=errorbars_semilog(2Cπ,2ΔCπ),label=L"2C_{\pi}(t)")
@@ -71,11 +71,11 @@ function constant_plot()
     odir,hits,fitη,fitπ,fitσ,fita0,fitρ,fileM,fileS,group,name,vsub,deriv,gs_sub,constant = read_prm(prmfile,23)
     hdf5groupM = splitext(fileM)[1]
     hdf5groupS = splitext(fileS)[1]
-    
-    absQ = true  
+
+    absQ = true
     markers  = deleteat!(Plots.supported_markers(),(1,2,4,7,9,13,14,16,17,18))
     for Q in [1,2,3,4]
-        hdf5fileQ    = absQ ? "output/data_fixed_absQ.hdf5" : "output/data_fixed_Q.hdf5" 
+        hdf5fileQ    = absQ ? "output/data_fixed_absQ.hdf5" : "output/data_fixed_Q.hdf5"
         hdf5groupM_Q = joinpath(hdf5groupM,"Q$(Float64(Q))")
         hdf5groupS_Q = joinpath(hdf5groupS,"Q$(Float64(Q))")
 
@@ -84,20 +84,20 @@ function constant_plot()
         G = gaugegroup(hdf5fileQ,hdf5groupM_Q)
         β = couplingβ(hdf5fileQ,hdf5groupM_Q)
         T, L = latticesize(hdf5fileQ,hdf5groupM_Q)[1:2]
-        
+
         # parameter of configurations
-        typeM, type = "DEFAULT_SEMWALL TRIPLET", "DISCON_SEMWALL SINGLET" 
+        typeM, type = "DEFAULT_SEMWALL TRIPLET", "DISCON_SEMWALL SINGLET"
         rescale = (L^3)^2 /L^3
 
         # connected eta' correlator
-        gs_sub = false # do not perform ground state subtraction 
+        gs_sub = false # do not perform ground state subtraction
         C, ΔC, Cd, ΔCd = singlet_analysis(hdf5fileQ,hdf5groupM_Q,hdf5groupS_Q,hits,vsub,"g5",fitπ,gs_sub,false)
         #title for plotting
         title = L"$ %$(T)\times %$(L)^3, \beta=%$β, %$G, m_q=%$(first(m))$, $n_{\rm src} = %$hits$"
-        if absQ          
-            label = L"C_{\eta'}(t), |Q|=%$(Q), N_{\rm cfg} = %$Nconf" 
+        if absQ
+            label = L"C_{\eta'}(t), |Q|=%$(Q), N_{\rm cfg} = %$Nconf"
         else
-            label = L"C_{\eta'}(t), Q=%$(Q), N_{\rm cfg} = %$Nconf" 
+            label = L"C_{\eta'}(t), Q=%$(Q), N_{\rm cfg} = %$Nconf"
         end
         plot!(plt_corr_eta_fQ,title=title,legend=:top,yaxis=:log10)
         scatter!(plt_corr_eta_fQ,C,yerr=errorbars_semilog(C,ΔC),label=label,markershape=markers[Q],ms=5)

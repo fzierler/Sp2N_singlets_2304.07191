@@ -71,7 +71,7 @@ function fit_corr_bars(c,cov,ncut;nexp2=false,constant=false,sign=+1)
     return fit1, fit2, fit3, model
 end
 ###############################################################
-# fit additional constant 
+# fit additional constant
 # automatically fits a constant present in the correlator
 # that can appear in multiple circumstances
 # i) residual constant in σ meson 2) topological effect in η'

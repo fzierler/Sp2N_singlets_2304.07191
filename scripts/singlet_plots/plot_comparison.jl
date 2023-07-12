@@ -19,7 +19,7 @@ collab = String.(data[:,1])
 Δratio(x,y,Δx,Δy) = sqrt((Δx / y)^2 + (Δy*x / y^2)^2)
 mρπ = @. mρ / mπ
 mηπ = @. mη / mπ
-mηρ = @. mη / mρ 
+mηρ = @. mη / mρ
 Δmρπ = Δratio.(mρ,mπ,Δmρ,Δmπ)
 Δmηπ = Δratio.(mη,mπ,Δmη,Δmπ)
 Δmηρ = Δratio.(mη,mρ,Δmη,Δmρ)
@@ -28,7 +28,7 @@ collaboration_indices  = [1:6, 7:7, 8:9, 10:11, 12:23, 24:26, 27:27, 29:32, 33:3
 colors   = [:white, :grey]
 markers  = deleteat!(Plots.supported_markers(),(1,2,4,7,9,13,14,16,17,18))
 append!(markers,[:circle])
-mss = [6,8,7,8,7,6,7,7,6] # markersiszes 
+mss = [6,8,7,8,7,6,7,7,6] # markersiszes
 
 plt1 = plot(title=L"$\rm{SU}(3)$ with $N_f=2$",xlabel=L"m_\pi / m_\rho",ylabel=L" m_{\rm meson} / m_\pi",legend=:topright)
 plt2 = plot(title=L"$\rm{SU}(3)$ with $N_f=2$",xlabel=L"m_\pi / m_\rho",ylabel=L" m_{\eta'} / m_\rho ",legend=:outerright)

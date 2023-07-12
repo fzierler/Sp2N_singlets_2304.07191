@@ -13,7 +13,7 @@ function read_prm(file,i)
     return odir, hits, fitη, fitπ, fitσ, fita0, fitρ ,fileM, fileS, group, name, vsub, deriv, gs_sub, constant
 end
 function singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,key,cut,fitint,deriv,gs_sub,sigma,constant;maxconf=typemax(Int))
-    type  = "DISCON_SEMWALL SINGLET" 
+    type  = "DISCON_SEMWALL SINGLET"
     typeM = "DEFAULT_SEMWALL TRIPLET"
     T, L = latticesize(hdf5file,hdf5groupM)[1:2]
     rescale = (L^3)^2 /L^3
@@ -23,17 +23,17 @@ function singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,key,cut,fitin
     C_con_MC = correlators(hdf5file,hdf5groupM,typeM,key)
     HiRepAnalysis._rescale_corrs!(C_con_MC, L)
     # restrict analysis to first N configurations
-    if size(C_dis_MC)[1] != size(C_con_MC)[2] 
+    if size(C_dis_MC)[1] != size(C_con_MC)[2]
         @warn "mismatch between connected  $(size(C_con_MC)[2]) and disconnected $(size(C_dis_MC)[1])"
         N = min(size(C_dis_MC)[1],size(C_con_MC)[2],maxconf)
-        C_dis_MC = C_dis_MC[1:N,:] 
+        C_dis_MC = C_dis_MC[1:N,:]
         C_con_MC = C_con_MC[:,1:N]
     end
     mη, Δmη, Cd,ΔCd, C, ΔC, meffη, Δmeffη, cη, Δcη = singlet_jackknife(C_con_MC,C_dis_MC,cut,fitint;deriv,gs_sub,sigma,constant)
     return mη, Δmη, meffη, Δmeffη, cη, Δcη, C, ΔC, Cd, ΔCd
 end
 function write_singlet_files(filedat,fileM,fitη,fitπ,fitσ,fita0,fitρ,mπ,Δmπ,mρ,Δmρ,ma0,Δma0,mη,Δmη,mσ,Δmσ,hits,P,ΔP,T,L,Nconf,m,G,β)
-    # calculate ratios 
+    # calculate ratios
     Δratio(x,y,Δx,Δy) = sqrt((Δx / y)^2 + (Δy*x / y^2)^2)
     πρ  = mπ / mρ
     πL  = L*mπ
@@ -92,14 +92,14 @@ for prmfile in files
 
         T, L = latticesize(hdf5file,hdf5groupM)[1:2]
         rescale = (L^3)^2 /L^3
-        type = "DISCON_SEMWALL SINGLET" 
+        type = "DISCON_SEMWALL SINGLET"
         P, ΔP = average_plaquette(hdf5file,hdf5groupM)
 
         if fitη != -1
-            key, sigma = "g5", false         
+            key, sigma = "g5", false
             mη, Δmη, meffη, Δmeffη, cη, Δcη, C, ΔC, Cd, ΔCd = singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,key,fitπ,fitη,deriv,gs_sub,sigma,constant)
         end
-        if fitσ != -1 
+        if fitσ != -1
             if fita0 == -1
                 gs_sub = false
             end
@@ -107,7 +107,7 @@ for prmfile in files
             mσ, Δmσ, meffσ, Δmeffσ, cσ, Δcσ, C, ΔC, Cd, ΔCd = singlet_analysis(hdf5file,hdf5groupM,hdf5groupS,hits,vsub,key,fita0,fitσ,deriv,gs_sub,sigma,constant)
         end
 
-        if (fitη == -1) || (fitη[2] - fitη[1] < minplateau - 1) 
+        if (fitη == -1) || (fitη[2] - fitη[1] < minplateau - 1)
             mη, Δmη = NaN, NaN
         end
         if (fitσ == -1) || (fitσ[2] - fitσ[1] < minplateau - 1)

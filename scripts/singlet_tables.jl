@@ -35,8 +35,8 @@ function generate_singlet_tables()
 
     # MAIN PAPER: PARAMETERS
     # Main results for the singlet mesons with degenerate fermions, TABLE I
-    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1) 
-    param_v0 = readdlm("input/parameters/param_deriv.csv",';',skipstart=1) 
+    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1)
+    param_v0 = readdlm("input/parameters/param_deriv.csv",';',skipstart=1)
 
     p0 = param_v0[:,11]
     p1 = data_v0[:,1:11]
@@ -52,8 +52,8 @@ function generate_singlet_tables()
 
     # NON-DEG PARAMETERS
     # Main results for the singlet mesons with degenerate fermions, TABLE II
-    data_v0 = readdlm("output/data_human_readable/data_non_deg_HR.csv",';',skipstart=1) 
-    param_v0 = readdlm("input/parameters/param_non_deg.csv",';',skipstart=1) 
+    data_v0 = readdlm("output/data_human_readable/data_non_deg_HR.csv",';',skipstart=1)
+    param_v0 = readdlm("input/parameters/param_non_deg.csv",';',skipstart=1)
 
     data = hcat(param_v0[:,10],data_v0[:,1:14])
     data = replace(data,-1 => "-")
@@ -64,7 +64,7 @@ function generate_singlet_tables()
 
     # MAIN PAPER: RESULTS
     # Main results for the singlet mesons with degenerate fermions, TABLE III
-    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1) 
+    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1)
 
     ens = data_v0[:,1:4]
     p1 = data_v0[:,19]
@@ -81,7 +81,7 @@ function generate_singlet_tables()
 
     # NON-DEG RESULTS
     # Main results for the singlet mesons with non-degenerate fermions, TABLE IV
-    data_v0 = readdlm("output/data_human_readable/data_non_deg_HR.csv",';',skipstart=1) 
+    data_v0 = readdlm("output/data_human_readable/data_non_deg_HR.csv",';',skipstart=1)
     p1 = data_v0[:,1:5]
     p2 = data_v0[:,14:18]
     p3 = data_v0[:,20]
@@ -96,11 +96,11 @@ function generate_singlet_tables()
 
     # APPENDIX: ETA MESON
     # Comparison of different analysis methods, TABLE V
-    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1) 
+    data_v0 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1)
     data_v1 = readdlm("output/data_human_readable/data_vsub_HR.csv",';',skipstart=1)
     data_v2 = readdlm("output/data_human_readable/data_nothing_HR.csv",';',skipstart=1)
     data_v3 = readdlm("output/data_human_readable/data_const_HR.csv",';',skipstart=1)
-    data_v4 = readdlm("output/data_human_readable/data_only_deriv_HR.csv",';',skipstart=1) 
+    data_v4 = readdlm("output/data_human_readable/data_only_deriv_HR.csv",';',skipstart=1)
 
     ens = data_v0[:,1:4]
     mη0 = data_v0[:,15]
@@ -117,8 +117,8 @@ function generate_singlet_tables()
 
     # APPENDIX: SIGMA MESON
     # Comparison of different analysis methods, TABLE VI
-    data_v4 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1) 
-    data_v5 = readdlm("output/data_human_readable/data_both_HR.csv",';',skipstart=1) 
+    data_v4 = readdlm("output/data_human_readable/data_deriv_HR.csv",';',skipstart=1)
+    data_v5 = readdlm("output/data_human_readable/data_both_HR.csv",';',skipstart=1)
     data_v6 = readdlm("output/data_human_readable/data_vsub_HR.csv",';',skipstart=1)
     data_v7 = readdlm("output/data_human_readable/data_both_nogs_HR.csv",';',skipstart=1)
 

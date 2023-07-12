@@ -8,7 +8,7 @@ using ProgressMeter
 
 path = path_raw_logs
 isdir("output") || mkdir("output")
-# run python scripts for performing analysis of 
+# run python scripts for performing analysis of
 println("Gradient flow analysis...")
 # this is not very elegant
 # modify python script to modify the path of the wilso_flow directory
@@ -27,9 +27,9 @@ function change_flowdir(flowdir,py_script;tmp="tmp_flow_analysis.py")
     mv(tmp,py_script;force=true)
 end
 change_flowdir(flowdir,"flow_analysis.py")
-# The script assumes that python or python3 is available and 
+# The script assumes that python or python3 is available and
 # the rquired packages are installed
-try 
+try
     run(`python flow_analysis.py`)
 catch
     run(`python3 flow_analysis.py`)
@@ -48,13 +48,13 @@ println("Analysis of non-degenerate fermion ensembles...")
 include("scripts/singlet_nondeg.jl")
 # then combine these results with the wilson flow results
 # additionally split hdf5 files into files with fixed topological charge Q
-println("Analysis of fixed topological sectors...") 
+println("Analysis of fixed topological sectors...")
 include("scripts/Qhistory.jl")
 # write tables
-println("Write tables...") 
+println("Write tables...")
 include("scripts/singlet_tables.jl")
 # create Plots
-println("Generate figures...") 
+println("Generate figures...")
 isdir("output/figures") || mkdir("output/figures")
 include("scripts/singlet_plots/plot_comparison.jl")
 include("scripts/singlet_plots/plot_singlet_constant.jl")
@@ -63,6 +63,6 @@ include("scripts/singlet_plots/plot_singlet_nondeg.jl")
 include("scripts/singlet_plots/plot_singlet.jl")
 
 # perform analysis with smeared correlators
-println("Analysis of smeared operator...") 
+println("Analysis of smeared operator...")
 include("scripts/analysis_smeared.jl")
 println("done.")

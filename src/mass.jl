@@ -74,7 +74,7 @@ function effectivemass(file::String,typeU,typeD;key="g5",kws...)
     Δm = effectivemass_err((cD+cU)/2,sqrt.(( Δc2D+Δc2U)/2))
     return m, Δm
 end
-# implicit methods 
+# implicit methods
 # see equation (10) in arXiv:1607.06654 [hep-lat]
 # (Notation in Gattringer/Lang is misleading!)
 function _meff_at_t(c,t,T;sign=+1)
@@ -88,7 +88,7 @@ function _meff_at_t(c,t,T;sign=+1)
     g(m,T,t,t0) = cor_lt(m,T,t0)/cor_lt(m,T,t)
     # Use the more simpler algorithms from the Roots.jl package
     # find_zero() has more overhead and fails if the algorithm does not converged
-    # Here we just use two simple, derivative free methods. If they do not converge 
+    # Here we just use two simple, derivative free methods. If they do not converge
     # they return NaN. If that is the case then we try a slightly more robust algorithm.
     m = Roots.secant_method(x->g(x,T,t,t0)-r0,m0;maxevals=5000)
     if isnan(m)
@@ -117,15 +117,15 @@ function implicit_meff_jackknife(fileM,typeM,key;sign=+1,kws...)
 end
 function implicit_meff_jackknife(corrs;sign=+1)
     T, N = size(corrs)
-    # create arrays for decay constant 
-    corrs_delete1 = zeros(T,N-1) 
+    # create arrays for decay constant
+    corrs_delete1 = zeros(T,N-1)
     meff = zeros(N,T÷2)
     # set up jack-knife (one deletion)
     for i in 1:N
         for t in 1:T
             for j in 1:N
-               (j < i) && (corrs_delete1[t,j]   = corrs[t,j]) 
-               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j]) 
+               (j < i) && (corrs_delete1[t,j]   = corrs[t,j])
+               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j])
             end
         end
         # perform averaging for fitting weights
@@ -140,15 +140,15 @@ function effectivemass_cosh_jackknife(file::String,type,key;kws...)
 end
 function implicit_meff_cosh(corrs)
     T, N = size(corrs)
-    # create arrays for decay constant 
-    corrs_delete1 = zeros(T,N-1) 
+    # create arrays for decay constant
+    corrs_delete1 = zeros(T,N-1)
     meff = zeros(N,T÷2)
     # set up jack-knife (one deletion)
     for i in 1:N
         for t in 1:T
             for j in 1:N
-               (j < i) && (corrs_delete1[t,j]   = corrs[t,j]) 
-               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j]) 
+               (j < i) && (corrs_delete1[t,j]   = corrs[t,j])
+               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j])
             end
         end
         # perform averaging for fitting weights

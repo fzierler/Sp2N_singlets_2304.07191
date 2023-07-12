@@ -23,7 +23,7 @@ function decayconstantmasses(fit1,fit2,fit3,error;constant=false)
         Δf2 = abs(fitdecay(fit3)-fitdecay(fit2))/2
         Δm = max(Δm1,Δm2)
         Δf = max(Δf1,Δf2)
-        if constant 
+        if constant
             Δc1 = stderror(fit1)[3]
             Δc2 = abs(fit3.param[3]-fit2.param[3])/2
             Δc = max(Δc1,Δc2)
@@ -38,8 +38,8 @@ function decayconstantmasses(fit1;constant)
     f  = fitdecay(fit1)
     Δm = stderror(fit1)[1]
     Δf = stderror(fit1)[2]
-    c  = constant ? fit1.param[3]     : Float64(0) 
-    Δc = constant ? stderror(fit1)[3] : Float64(0) 
+    c  = constant ? fit1.param[3]     : Float64(0)
+    Δc = constant ? stderror(fit1)[3] : Float64(0)
     return m, Δm, f, Δf, c, Δc
 end
 function _rescale_corrs!(corr,cov_v,cov_m,L)
@@ -115,8 +115,8 @@ function meson_mass_decay(corr,cov_v;sign=+1,constant=false,ncut,error,nexp2)
 end
 function meson_mass_decay_jackknife(corrs;sign=+1,constant=false,ncut,autocor,nexp2,kws...)
     T, N = size(corrs)
-    # create arrays for decay constant 
-    corrs_delete1 = zeros(T,N-1) 
+    # create arrays for decay constant
+    corrs_delete1 = zeros(T,N-1)
     masses = zeros(N)
     decayc = zeros(N)
     constants = zeros(N)
@@ -124,8 +124,8 @@ function meson_mass_decay_jackknife(corrs;sign=+1,constant=false,ncut,autocor,ne
     for i in 1:N
         for t in 1:T
             for j in 1:N
-               (j < i) && (corrs_delete1[t,j]   = corrs[t,j]) 
-               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j]) 
+               (j < i) && (corrs_delete1[t,j]   = corrs[t,j])
+               (j > i) && (corrs_delete1[t,j-1] = corrs[t,j])
             end
         end
         # perform averaging for fitting weights
@@ -135,7 +135,7 @@ function meson_mass_decay_jackknife(corrs;sign=+1,constant=false,ncut,autocor,ne
         fit = fit_corr(c_mean, cov_var,ncut;nexp2,sign,constant)[1]
         masses[i] = fitmass(fit)
         decayc[i] = fitdecay(fit)
-        if constant 
+        if constant
             constants[i] = fit.param[3]
         end
     end
@@ -147,15 +147,15 @@ function meson_mass_decay_jackknife(corrs;sign=+1,constant=false,ncut,autocor,ne
 end
 function meson_mass_decay_bootstrap(corrs;nsamples=size(corrs)[2],sign=+1,constant=false,ncut,nexp2,kws...)
     T, N = size(corrs)
-    # create arrays for decay constant 
-    corrs_sample = zeros(T,N) 
+    # create arrays for decay constant
+    corrs_sample = zeros(T,N)
     masses = zeros(nsamples)
     decayc = zeros(nsamples)
     constants = zeros(N)
     # set up jack-knife (one deletion)
     for i in 1:nsamples
         for j in 1:N
-            ind = rand(1:N) 
+            ind = rand(1:N)
             corrs_sample[:,j] = corrs[:,ind]
         end
         # perform averaging for fitting weights
@@ -164,7 +164,7 @@ function meson_mass_decay_bootstrap(corrs;nsamples=size(corrs)[2],sign=+1,consta
         fit = fit_corr(c_mean, cov_var,ncut;nexp2,sign,constant)[1]
         masses[i] = fitmass(fit)
         decayc[i] = fitdecay(fit)
-        if constant 
+        if constant
             constants[i] = fit.param[3]
         end
     end
@@ -177,9 +177,9 @@ end
 function meson_mass_decay_select(args...;error,kws...)
     if error == :hist || error == :histogram
         decay_mass_histogram(args...;kws...)
-    elseif error == :jack || error == :jackknife 
+    elseif error == :jack || error == :jackknife
         meson_mass_decay_jackknife(args...;kws...)
-    elseif error == :boot || error == :bootstrap 
+    elseif error == :boot || error == :bootstrap
         println("using bootstrap")
         meson_mass_decay_bootstrap(args...;kws...)
     else
@@ -217,10 +217,10 @@ end
 # jackknife related methods for singlets
 function correlator_deriv(C,ΔC)
     T = length(C)
-    Cd  = zero(C) 
+    Cd  = zero(C)
     ΔCd = zero(C)
     for i in 1:T
-        Cd[i]  = ( C[mod1(i-1,T)] -  C[mod1(i+1,T)])/2 
+        Cd[i]  = ( C[mod1(i-1,T)] -  C[mod1(i+1,T)])/2
         ΔCd[i] = sqrt((ΔC[mod1(i-1,T)]^2 + ΔC[mod1(i+1,T)]^2)/4)
     end
     return Cd, ΔCd
@@ -261,10 +261,10 @@ function singlet_jackknife(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
     for i in 1:N
         for t in 1:T
             for j in 1:N
-            (j < i) && (C_con_MC_JK[t,j]   = C_con_MC[t,j]) 
-            (j < i) && (C_dis_MC_JK[j,t]   = C_dis_MC[j,t]) 
-            (j > i) && (C_con_MC_JK[t,j-1] = C_con_MC[t,j]) 
-            (j > i) && (C_dis_MC_JK[j-1,t] = C_dis_MC[j,t]) 
+            (j < i) && (C_con_MC_JK[t,j]   = C_con_MC[t,j])
+            (j < i) && (C_dis_MC_JK[j,t]   = C_dis_MC[j,t])
+            (j > i) && (C_con_MC_JK[t,j-1] = C_con_MC[t,j])
+            (j > i) && (C_dis_MC_JK[j-1,t] = C_dis_MC[j,t])
             end
         end
         # Average connected and disconnect pieces
@@ -273,17 +273,17 @@ function singlet_jackknife(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
         ΔC = sqrt.(var(C_dis_MC_JK,dims=1)[1,:]/((N-1)/τ))
         # full connected diagrams
         Cc = mean(C_con_MC_JK,dims=2)[:,1]
-        ΔCc= sqrt.(var(C_con_MC_JK,dims=2)[:,1]/((N-1)/τ))        
+        ΔCc= sqrt.(var(C_con_MC_JK,dims=2)[:,1]/((N-1)/τ))
         # obtain ground state correlator of connected part
         if gs_sub
             CI, ΔCI = groundstate_correlator(C_con_MC_JK,cut;sign=+1,autocor=false)
         end
         # combine the diagramsgs_sub
         Nf=2
-        sign = sigma ? +1 : -1  
+        sign = sigma ? +1 : -1
         if gs_sub
             improved  = @. CI + sign*Nf*C
-            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2) 
+            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2)
         else
             improved  = @. Cc + sign*Nf*C
             Δimproved = @. sqrt(ΔCc^2 + Nf^2*ΔC^2)
@@ -296,7 +296,7 @@ function singlet_jackknife(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
         else
             try
                 if constant
-                    fit_constant = fitint #(T÷2-4,T÷2)  
+                    fit_constant = fitint #(T÷2-4,T÷2)
                     mη, Δmη, fη, Δfη, cη, Δcη = meson_mass_decay(improved,Δimproved.^2;ncut=fit_constant,sign=+1,error=:std,nexp2=false,constant=true)
                     improved = improved .- cη
                     mη, Δmη, fη, Δfη = meson_mass_decay(improved,Δimproved.^2;ncut=fitint,sign=+1,error=:std,nexp2=false,constant=false)[1:4]
@@ -306,7 +306,7 @@ function singlet_jackknife(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
             catch
                 mη, Δmη, fη, Δfη, cη, Δcη = 0, 0, 0, 0, 0 ,0
             end
-            if constant 
+            if constant
                 meffη = implicit_meff(improved .- cη ,sign=+1)
             else
                 meffη = implicit_meff(improved,sign=+1)
@@ -339,10 +339,10 @@ function singlet_jackknife_corr(C_con_MC,C_dis_MC,cut;gs_sub=true,sigma=false)
     for i in 1:N
         for t in 1:T
             for j in 1:N
-            (j < i) && (C_con_MC_JK[t,j]   = C_con_MC[t,j]) 
-            (j < i) && (C_dis_MC_JK[j,t]   = C_dis_MC[j,t]) 
-            (j > i) && (C_con_MC_JK[t,j-1] = C_con_MC[t,j]) 
-            (j > i) && (C_dis_MC_JK[j-1,t] = C_dis_MC[j,t]) 
+            (j < i) && (C_con_MC_JK[t,j]   = C_con_MC[t,j])
+            (j < i) && (C_dis_MC_JK[j,t]   = C_dis_MC[j,t])
+            (j > i) && (C_con_MC_JK[t,j-1] = C_con_MC[t,j])
+            (j > i) && (C_dis_MC_JK[j-1,t] = C_dis_MC[j,t])
             end
         end
         # Average connected and disconnect pieces
@@ -351,17 +351,17 @@ function singlet_jackknife_corr(C_con_MC,C_dis_MC,cut;gs_sub=true,sigma=false)
         ΔC = sqrt.(var(C_dis_MC_JK,dims=1)[1,:]/((N-1)/τ))
         # full connected diagrams
         Cc = mean(C_con_MC_JK,dims=2)[:,1]
-        ΔCc= sqrt.(var(C_con_MC_JK,dims=2)[:,1]/((N-1)/τ))        
+        ΔCc= sqrt.(var(C_con_MC_JK,dims=2)[:,1]/((N-1)/τ))
         # obtain ground state correlator of connected part
         if gs_sub
             CI, ΔCI = groundstate_correlator(C_con_MC_JK,cut;sign=+1,autocor=false)
         end
         # combine the diagramsgs_sub
         Nf=2
-        sign = sigma ? +1 : -1  
+        sign = sigma ? +1 : -1
         if gs_sub
             improved  = @. CI + sign*Nf*C
-            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2) 
+            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2)
         else
             improved  = @. Cc + sign*Nf*C
             Δimproved = @. sqrt(ΔCc^2 + Nf^2*ΔC^2)
@@ -394,7 +394,7 @@ function singlet_bootstrap(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
         for j in 1:N
             ind = rand(1:N)
             C_con_MC_BS[:,j] = C_con_MC[:,ind]
-            C_dis_MC_BS[j,:] = C_dis_MC[ind,:] 
+            C_dis_MC_BS[j,:] = C_dis_MC[ind,:]
         end
         # Average connected and disconnect pieces
         τ = 1 #autocorrelation_time(plaquettes(fileS);correct=true)
@@ -402,17 +402,17 @@ function singlet_bootstrap(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
         ΔC = sqrt.(var(C_dis_MC_BS,dims=1)[1,:]/(N/τ))
         # full connected diagrams
         Cc = mean(C_con_MC_BS,dims=2)[:,1]
-        ΔCc= sqrt.(var(C_con_MC_BS,dims=2)[:,1]/(N/τ))        
+        ΔCc= sqrt.(var(C_con_MC_BS,dims=2)[:,1]/(N/τ))
         # obtain ground state correlator of connected part
         if gs_sub
             CI, ΔCI = groundstate_correlator(C_con_MC_BS,cut;sign=+1,autocor=false)
         end
         # combine the diagramsgs_sub
         Nf=2
-        sign = sigma ? +1 : -1  
+        sign = sigma ? +1 : -1
         if gs_sub
             improved  = @. CI + sign*Nf*C
-            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2) 
+            Δimproved = @. sqrt(ΔCI^2 + Nf^2*ΔC^2)
         else
             improved  = @. Cc + sign*Nf*C
             Δimproved = @. sqrt(ΔCc^2 + Nf^2*ΔC^2)
@@ -424,7 +424,7 @@ function singlet_bootstrap(C_con_MC,C_dis_MC,cut,fitint;deriv=true,gs_sub=true,s
             meffη = implicit_meff(Cd,sign=-1)
         else
             mη, Δmη, fη, Δfη, cη, Δcη = meson_mass_decay(improved,Δimproved.^2;ncut=fitint,sign=+1,error=:std,nexp2=false,constant)
-            if constant 
+            if constant
                 meffη = implicit_meff(improved .- cη ,sign=+1)
             else
                 meffη = implicit_meff(improved,sign=+1)

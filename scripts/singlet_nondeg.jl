@@ -12,11 +12,11 @@ function read_prm_nondeg(file,i)
     return odir, hits, fitη, fitπ0, fitπc, fitσ, fita0, fitρ, name
 end
 function fermion_masses_from_filename(file)
-    p1 = last(findfirst("m1",file)) 
+    p1 = last(findfirst("m1",file))
     p2 = first(findfirst("m2",file))
-    p3 = last(findfirst("m2",file)) 
+    p3 = last(findfirst("m2",file))
     # create array of masses for matching of output
-    m  = [file[p1+1:p2-1],file[p3+1:end]] 
+    m  = [file[p1+1:p2-1],file[p3+1:end]]
     return m
 end
 
@@ -74,10 +74,10 @@ prmfile = "input/parameters/param_non_deg.csv"
         mπf, Δmπf = meson_mass_decay(hdf5file,hdf5groupM,"g5",typeM;ncut=fitπc,kws...)[1:2]
         mρf, Δmρf = meson_mass_decay(hdf5file,hdf5groupM,"g1",typeM;ncut=fitρ,kws...)[1:2]
         mπc, Δmπc = mπf, Δmπf
-        mρc, Δmρc = mρf, Δmρf 
+        mρc, Δmρc = mρf, Δmρf
     end
 
-    if size(C_dis_MC_eta)[1] != size(C_con_MC)[2] 
+    if size(C_dis_MC_eta)[1] != size(C_con_MC)[2]
         @warn "mismatch between connected  $(size(C_con_MC)[2]) and disconnected $(size(C_dis_MC_eta)[1])"
     end
     if fitπ0 != -1
@@ -110,7 +110,7 @@ prmfile = "input/parameters/param_non_deg.csv"
     sη  = errorstring(mη,Δmη)
     sσ  = errorstring(mσ,Δmσ)
     sπ0 = errorstring(mπ0,Δmπ0)
-    # calculate ratios 
+    # calculate ratios
     Δratio(x,y,Δx,Δy) = sqrt((Δx / y)^2 + (Δy*x / y^2)^2)
     ππ  = mπf / mπ0
     πL  = L*mπ0
@@ -135,4 +135,3 @@ prmfile = "input/parameters/param_non_deg.csv"
         close(ioPR)
     end
 end
-
