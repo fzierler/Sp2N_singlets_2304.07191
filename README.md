@@ -7,14 +7,14 @@ This repository contains the code used to prepare the plots and results included
 - Download the file `WilsonFlow.zip`, decompress and place it in `input_data` (the directory can be modified in `main.jl`)
 - Run the analysis using `julia main.jl` within this directory
 - The figures and tables of [[2304.07191]](https://arxiv.org/abs/2304.07191v1) can then be found in
-    - `output/figures`
-    - `output/tables`
+    - `output/figures/`
+    - `output/tables/`
 
 - If you want to start from the raw logs the variable `start_from_raw_logs` in the file `main.jl` needs to be set to `true` and the path to the directory containing the decompressed raw logs needs to be provided. Note, that the raw logs are compressed. The variable `start_from_raw_logs` is set to `false` by default.
 
 ## Warning
 
-The code in this repository has only been tested on the specific dataset provided here. It is not intended to be easily generalizable to arbitrary datasets. The analysis parameters are hard-coded in the directory `input/parameters`.
+The code in this repository has only been tested on the specific dataset provided here. It is not intended to be easily generalizable to arbitrary datasets. The analysis parameters are hard-coded in the directory `input/parameters/`.
 
 ## Plots
 
