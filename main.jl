@@ -7,6 +7,6 @@ flowdir  = "input_data/wilson_flow/"
 # path    specifies the directory containing the raw log files
 # hdfpath specifies temporary directory for saving individual hdf5 files foir every ensemble
 start_from_raw_logs = false
-path_raw_logs = "/./Singlets_Data/"
+path_raw_logs = "../Singlets_Data/"
 hdfpath  = "input_data/hdf_files/"
 include("singlet_anaysis.jl")
