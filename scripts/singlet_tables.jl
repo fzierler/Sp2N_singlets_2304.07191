@@ -83,9 +83,9 @@ function generate_singlet_tables()
     # Main results for the singlet mesons with non-degenerate fermions, TABLE IV
     data_v0 = readdlm("output/data_human_readable/data_non_deg_HR.csv",';',skipstart=1)
     p1 = data_v0[:,1:5]
-    p2 = data_v0[:,14:18]
-    p3 = data_v0[:,20]
-    p4 = data_v0[:,19]
+    p2 = data_v0[:,15:19]
+    p3 = data_v0[:,21]
+    p4 = data_v0[:,20]
     data = hcat(p1,p2,p3,p4)
 
     data = replace(data,NaN => "-")
