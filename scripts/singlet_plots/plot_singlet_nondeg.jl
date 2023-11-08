@@ -50,6 +50,8 @@ x2, Δx2 = mπf ./ mπ0, Δratio.(mπf,mπ0,Δmπf,Δmπ0)
 plt = plot(legend=:outerright,ylabel=L" m_{\rm meson}/m_{\pi^0}",title=L"Sp(4),~ m_u \neq m_d")
 plt_pi   = plot(plt,xlabel=L" m_{\pi^\pm} / m_{\pi^0}")
 plt_pcac = plot(plt,xlabel=L"PCAC mass ratio $m_d/m_u$")
+plt_direct =  plot(legend=:outerright,ylabel=L" a m_{\rm meson}",title=L"Sp(4),~ m_u \neq m_d",xlabel=L"am_{\pi^\pm}")
+
 # obtain minimal and maximal pion-ratio
 xcont1 = [1,maximum(x1+2Δx1)]
 scatter!(plt_pcac,x1,xerr=Δx1,rπf,yerr=Δrπf,label=L"{\pi^\pm}",markershape=:rect,ms=7)
@@ -65,7 +67,16 @@ scatter!(plt_pi,x2,xerr=Δx2,rη,yerr=Δmη,label=L"{\eta'}",markershape=:circle
 scatter!(plt_pi,x2,xerr=Δx2,rρf,yerr=Δrρf,label=L"{\rho^\pm}",markershape=:dtriangle,ms=8)
 scatter!(plt_pi,x2,xerr=Δx2,rρ0,yerr=Δrρ0,label=L"{\rho^0}",markershape=:diamond,ms=8)
 
+extrema_mπf = [extrema(mπf)...]
+plot!(plt_direct,extrema_mπf,extrema_mπf,label=L"{\pi^\pm}",lw=3)
+scatter!(plt_direct, mπf, xerr=Δmπf, mπ0, yerr=Δmπ0, label=L"{\pi^0}",markershape=:circle,ms=7)
+scatter!(plt_direct, mπf, xerr=Δmπf, mη , yerr=Δmη , label=L"{\eta'}",markershape=:rect,ms=7)
+scatter!(plt_direct, mπf, xerr=Δmπf, mρ0, yerr=Δmρ0, label=L"{\rho^0}",markershape=:dtriangle,ms=8)
+scatter!(plt_direct, mπf, xerr=Δmπf, mρf, yerr=Δmρf, label=L"{\rho^\pm}",markershape=:diamond,ms=8)
+
 savefig(plt_pcac,"output/figures/Sp4_eta_nondeg_AWI.pdf")
 savefig(plt_pi,"output/figures/Sp4_eta_nondeg.pdf")
+savefig(plt_direct,"output/figures/Sp4_eta_nondeg_not_a_ratio.pdf")
 plt_pi
 plt_pcac
+plt_direct

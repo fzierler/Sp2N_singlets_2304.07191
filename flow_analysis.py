@@ -3,7 +3,7 @@ from flow_analysis.measurements.scales import measure_w0
 import csv, os
 
 os.makedirs("output/Qhistories/", exist_ok=True)
-path = "input_data/wilson_flow/"
+path = 'input_data/wilson_flow/'
 
 
 def process_flow_file_hirep_for_singlets(hirep_file, W0, filename):

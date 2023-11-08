@@ -41,10 +41,20 @@ if start_from_raw_logs
     include("scripts/writeHDF5.jl")
 end
 
-# perform analysis of degenerate and non-degenerate mesons
+# perform analysis of degenerate mesons
 println("Analysis of degenerate fermion ensembles...")
 include("scripts/singlet_deg.jl")
+# perform analysis of  non-degenerate mesons
 println("Analysis of non-degenerate fermion ensembles...")
+include("scripts/non_deg/write_matrix_correlators.jl")
+include("scripts/non_deg/write_eigenvalues.jl")
+# The script assumes that python or python3 is available and
+# the rquired packages are installed
+try
+    run(`python fit_eigenvalues.py`)
+catch
+    run(`python3 fit_eigenvalues.py`)
+end
 include("scripts/singlet_nondeg.jl")
 # then combine these results with the wilson flow results
 # additionally split hdf5 files into files with fixed topological charge Q

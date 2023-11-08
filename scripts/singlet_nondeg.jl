@@ -42,8 +42,6 @@ prmfile = "input/parameters/param_non_deg.csv"
 
     # obtain disconnected part
     if m[1] != m[2]
-        C_dis_MC_eta = disconnected_eta_MC(hdf5file,hdf5groupS,type,hits,m[1],m[2];rescale=rescale,key="g5_disc_re",vsub=false)
-        C_dis_MC_pi0 = disconnected_pi0_MC(hdf5file,hdf5groupS,type,hits,m[1],m[2];rescale=rescale,key="g5_disc_re",vsub=false)
         C_dis_MC_sigma = disconnected_eta_MC(hdf5file,hdf5groupS,type,hits,m[1],m[2];rescale=rescale,key="id_disc_re",vsub=false)
         # obtain connected part
         C_con_MC = correlators(hdf5file,hdf5groupM,typeU,typeD,"g5")
@@ -58,6 +56,22 @@ prmfile = "input/parameters/param_non_deg.csv"
         #obtain PCAC/AWI mass
         kwsAWI = (therm=0,step=1,autocor=false,ncut=fitπc[1])
         mAWI, ΔmAWI = awi_mass(hdf5file,hdf5groupM,typeUD;kwsAWI...)
+        # Read in correct values of the variational analysis
+        eta_pi_filename = "output/data/non_degenerate_data_eta_pi.csv"
+        eta_pi_data = readdlm(eta_pi_filename,';')
+        # compare filename and find correct row:
+        filenames = eta_pi_data[:,1]
+        ind = findfirst(contains(basename(odir)),filenames)
+        if fitπ0 != -1
+            mπ0, Δmπ0 = eta_pi_data[ind,7], eta_pi_data[ind,8]
+        else
+            mπ0, Δmπ0 = NaN,NaN
+        end
+        if fitη != -1
+            mη,  Δmη  = eta_pi_data[ind,9], eta_pi_data[ind,10]
+        else
+            mη,  Δmη = NaN,NaN
+        end
     else
         C_dis_MC_eta = disconnected_eta_MC(hdf5file,hdf5groupS,type,hits;rescale=rescale,key="g5_disc_re",vsub=false)
         C_dis_MC_pi0 = zero(C_dis_MC_eta)
@@ -75,20 +89,20 @@ prmfile = "input/parameters/param_non_deg.csv"
         mρf, Δmρf = meson_mass_decay(hdf5file,hdf5groupM,"g1",typeM;ncut=fitρ,kws...)[1:2]
         mπc, Δmπc = mπf, Δmπf
         mρc, Δmρc = mρf, Δmρf
-    end
-
-    if size(C_dis_MC_eta)[1] != size(C_con_MC)[2]
-        @warn "mismatch between connected  $(size(C_con_MC)[2]) and disconnected $(size(C_dis_MC_eta)[1])"
-    end
-    if fitπ0 != -1
-        mπ0, Δmπ0, Cdπ0 ,ΔCdπ0, Cπ0, ΔCπ0, meffπ0, Δmeffπ0, cπ0, Δcπ0 = singlet_jackknife(C_con_MC,C_dis_MC_pi0,fitπc,fitπ0;deriv=true,gs_sub=true,sigma=false,constant=false)
-    else
-        mπ0, Δmπ0 = NaN,NaN
-    end
-    if fitη != -1
-        mη, Δmη, Cdη, ΔCdη, Cη, ΔCη, meffη, Δmeffη, cη, Δcη = singlet_jackknife(C_con_MC,C_dis_MC_eta,fitπc,fitη;deriv=true,gs_sub=true,sigma=false,constant=false)
-    else
-        mη,  Δmη = NaN,NaN
+        # perform analysis only for degenerate masses
+        if size(C_dis_MC_eta)[1] != size(C_con_MC)[2]
+            @warn "mismatch between connected  $(size(C_con_MC)[2]) and disconnected $(size(C_dis_MC_eta)[1])"
+        end
+        if fitπ0 != -1
+            mπ0, Δmπ0, Cdπ0 ,ΔCdπ0, Cπ0, ΔCπ0, meffπ0, Δmeffπ0, cπ0, Δcπ0 = singlet_jackknife(C_con_MC,C_dis_MC_pi0,fitπc,fitπ0;deriv=true,gs_sub=true,sigma=false,constant=false)
+        else
+            mπ0, Δmπ0 = NaN,NaN
+        end
+        if fitη != -1
+            mη, Δmη, Cdη, ΔCdη, Cη, ΔCη, meffη, Δmeffη, cη, Δcη = singlet_jackknife(C_con_MC,C_dis_MC_eta,fitπc,fitη;deriv=true,gs_sub=true,sigma=false,constant=false)
+        else
+            mη,  Δmη = NaN,NaN
+        end
     end
     if fitσ != -1
         mσ, Δmσ, Cdσ, ΔCdσ, Cσ, ΔCσ, meffσ, Δmeffσ, cσ, Δcσ = singlet_jackknife(C_con_MC_sigma,C_dis_MC_sigma,fita0,fitσ;deriv=true,gs_sub=true,sigma=true,constant=false)
@@ -112,13 +126,7 @@ prmfile = "input/parameters/param_non_deg.csv"
     sπ0 = errorstring(mπ0,Δmπ0)
     # calculate ratios
     Δratio(x,y,Δx,Δy) = sqrt((Δx / y)^2 + (Δy*x / y^2)^2)
-    ππ  = mπf / mπ0
-    πL  = L*mπ0
-    Δππ = Δratio(mπf,mπ0,Δmπf,Δmπ0)
-    ΔπL = L*Δmπ0
     # more errorstrings
-    sππ = errorstring(ππ,Δππ)
-    sπL = errorstring(πL,ΔπL)
     sP  = errorstring(P,ΔP)
     sAWI = errorstring(mAWI,ΔmAWI)
 
