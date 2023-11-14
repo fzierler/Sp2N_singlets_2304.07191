@@ -45,10 +45,10 @@ function generate_singlet_tables()
     data = hcat(p0,group,p1,p4)
     data = replace(data,NaN => "-")
     data = replace(data,-1 => "-")
-    #writedlm("output/tables/tab:ensembles_degenerate.csv",data,"&")
+    #writedlm("output/tables/tab_ensembles_degenerate.csv",data,"&")
     labels=L"Ensemble & group & $\beta$ & $m_0$ & $L$ & $T$ & $n_\text{conf}$ & $n_\text{src}$ & $I_{\eta'}$ & $I_\pi$ & $I_\sigma$ & $I_{\sigma^{\rm conn.}}$ & $I_\rho$ &  $\langle P \rangle$"
     isdir("output/tables") || mkdir("output/tables")
-    write_tex_table("output/tables/tab:ensembles_degenerate.tex",data;insert_hline=3,labels)
+    write_tex_table("output/tables/tab_ensembles_degenerate.tex",data;insert_hline=3,labels)
 
     # NON-DEG PARAMETERS
     # Main results for the singlet mesons with degenerate fermions, TABLE II
@@ -58,9 +58,9 @@ function generate_singlet_tables()
     data = hcat(param_v0[:,10],data_v0[:,1:14])
     data = replace(data,-1 => "-")
     data = replace(data,NaN => "-")
-    #writedlm("output/tables/tab:ensembles_non-degenerate.csv",data,"&")
+    #writedlm("output/tables/tab_ensembles_non-degenerate.csv",data,"&")
     labels=L"Ensemble & $\beta$ & $m_0^1$ & $m_0^2$ & $L$ & $T$ & $n_\text{conf}$ & $n_\text{src}$ & $I_{\eta'}$ & $I_{\pi^0}$ & $I_{\pi^\pm}$ & $I_\sigma$ & $I_{\sigma^{\rm conn.}}$ & $I_\rho$ &  $\langle P \rangle$"
-    write_tex_table("output/tables/tab:ensembles_non-degenerate.tex",data[1:end-1,:];labels)
+    write_tex_table("output/tables/tab_ensembles_non-degenerate.tex",data[1:end-1,:];labels)
 
     # MAIN PAPER: RESULTS
     # Main results for the singlet mesons with degenerate fermions, TABLE III
@@ -75,9 +75,9 @@ function generate_singlet_tables()
     data = hcat(group,ens,p1,p2,p3,p4)
     data = replace(data,NaN => "-")
     data = replace(data,-1 => "-")
-    #writedlm("output/tables/tab:masses_degenerate.csv",data,"&")
+    #writedlm("output/tables/tab_masses_degenerate.csv",data,"&")
     labels=L"& $\beta$ & $m_0$ & $L$ & $T$ & $m_\pi L$ & $m_\pi / m_\rho$ & $m_\pi$ & $m_\rho$ & $m_{\eta'}$ & $m_\sigma$"
-    write_tex_table("output/tables/tab:masses_degenerate.tex",data;labels)
+    write_tex_table("output/tables/tab_masses_degenerate.tex",data;labels)
 
     # NON-DEG RESULTS
     # Main results for the singlet mesons with non-degenerate fermions, TABLE IV
@@ -90,9 +90,9 @@ function generate_singlet_tables()
 
     data = replace(data,NaN => "-")
     data = replace(data,-1 => "-")
-    #writedlm("output/tables/tab:masses_non-degenerate.csv",data,"&")
+    #writedlm("output/tables/tab_masses_non-degenerate.csv",data,"&")
     labels=L"$\beta$ & $m_0^{(1)}$ & $m_0^{(2)}$ & $L$ & $T$ & $m_{\pi^0}$ & $m_{\pi^0_c}$ & $m_{\pi^\pm}$ & $m_{\rho^0}$ & $m_{\rho^\pm}$ & $m_{\eta'}$ & $m_{\sigma}$"
-    write_tex_table("output/tables/tab:masses_non-degenerate.tex",data[1:end-1,:];labels)
+    write_tex_table("output/tables/tab_masses_non-degenerate.tex",data[1:end-1,:];labels)
 
     # APPENDIX: ETA MESON
     # Comparison of different analysis methods, TABLE V
@@ -111,9 +111,9 @@ function generate_singlet_tables()
 
     data = hcat(group,ens,mη0,mη1,mη2,mη3,mη4)
     data = replace(data,NaN => "-")
-    #writedlm("output/tables/tab:eta_different_techniques.csv",data,"&")
+    #writedlm("output/tables/tab_eta_different_techniques.csv",data,"&")
     labels=L"& $\beta$ & $m_0$ & $L$ & $T$ & $m_{\eta'}$ & $m_{\eta'}^{\rm (i)}$ & $m_{\eta'}^{\rm (ii)}$ & $m_{\eta'}^{\rm (iii)}$ & $m_{\eta'}^{\rm (iv)}$"
-    write_tex_table("output/tables/tab:eta_different_techniques.tex",data;labels)
+    write_tex_table("output/tables/tab_eta_different_techniques.tex",data;labels)
 
     # APPENDIX: SIGMA MESON
     # Comparison of different analysis methods, TABLE VI
@@ -130,8 +130,8 @@ function generate_singlet_tables()
 
     data = hcat(group,ens,mσ0,mσ1,mσ2,mσ3)
     data = replace(data,NaN => "-")
-    #writedlm("output/tables/tab:sigma_different_techniques.csv",data,"&")
+    #writedlm("output/tables/tab_sigma_different_techniques.csv",data,"&")
     labels=L"& $\beta$ & $m_0$ & $L$  & $T$  & $m_{\sigma}$ & $m_{\sigma}^{(i)}$ & $m_{\sigma}^{\rm (ii)}$ & $m_{\sigma}^{\rm (iii)}$"
-    write_tex_table("output/tables/tab:sigma_different_techniques.tex",data;labels)
+    write_tex_table("output/tables/tab_sigma_different_techniques.tex",data;labels)
 end
 generate_singlet_tables()
