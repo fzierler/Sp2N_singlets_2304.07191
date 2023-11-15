@@ -56,14 +56,14 @@ plt_direct =  plot(legend=:outerright,ylabel=L" a m_{\rm meson}",title=L"Sp(4),~
 xcont1 = [1,maximum(x1+2Δx1)]
 scatter!(plt_pcac,x1,xerr=Δx1,rπf,yerr=Δrπf,label=L"{\pi^\pm}",markershape=:rect,ms=7)
 plot!(plt_pcac,xcont1,ones(2),label=L"{\pi^0}",lw=3)
-scatter!(plt_pcac,x1,xerr=Δx1,rη,yerr=Δmη,label=L"{\eta'}",markershape=:circle,ms=7)
+scatter!(plt_pcac,x1,xerr=Δx1,rη ,yerr=Δrη,label=L"{\eta'}",markershape=:circle,ms=7)
 scatter!(plt_pcac,x1,xerr=Δx1,rρf,yerr=Δrρf,label=L"{\rho^\pm}",markershape=:dtriangle,ms=8)
 scatter!(plt_pcac,x1,xerr=Δx1,rρ0,yerr=Δrρ0,label=L"{\rho^0}",markershape=:diamond,ms=8)
 
 xcont2 = [1,maximum(x2+2Δx2)]
 plot!(plt_pi,xcont2,xcont2,label=L"{\pi^\pm}",lw=3)
 plot!(plt_pi,xcont2,ones(2),label=L"{\pi^0}",lw=3)
-scatter!(plt_pi,x2,xerr=Δx2,rη,yerr=Δmη,label=L"{\eta'}",markershape=:circle,ms=7)
+scatter!(plt_pi,x2,xerr=Δx2,rη ,yerr=Δrη ,label=L"{\eta'}",markershape=:circle,ms=7)
 scatter!(plt_pi,x2,xerr=Δx2,rρf,yerr=Δrρf,label=L"{\rho^\pm}",markershape=:dtriangle,ms=8)
 scatter!(plt_pi,x2,xerr=Δx2,rρ0,yerr=Δrρ0,label=L"{\rho^0}",markershape=:diamond,ms=8)
 
