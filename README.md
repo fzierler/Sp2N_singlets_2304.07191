@@ -3,8 +3,8 @@ This repository contains the code used to prepare the plots and results included
 
 ## Instructions: Running the analysis
 - Install required dependencies (see below)
-- Download the hdf5-file `data.hdf5` from Zenodo and place it in `input_data` (the directory can be modified in `main.jl`)
-- Download the file `WilsonFlow.zip`, decompress and place it in `input_data` (the directory can be modified in `main.jl`)
+- Download the hdf5-file `data.hdf5` from the [Zenodo data release](https://zenodo.org/records/8154928) and place it in `input_data` (the directory can be modified in `main.jl`)
+- Download the file `WilsonFlow.zip` from the [Zenodo data release](https://zenodo.org/records/8154928), decompress and place it in `input_data` (the directory can be modified in `main.jl`)
 - Run the analysis using `julia main.jl` within this directory
 - The figures and tables of [[2304.07191]](https://arxiv.org/abs/2304.07191v1) can then be found in
     - `output/figures/`
@@ -25,7 +25,7 @@ The plots are made using [Plots.jl](https://zenodo.org/record/7994271) via the [
 The gradient flow data is analysed using Ed Bennett's [flow_analysis](https://github.com/edbennett/flow_analysis).
 
 ## Requirements
-- Python 3.8 (numpy, pre-commit, scipy, uncertainties)
+- Python 3.8 (see `requirements.txt` for the required packages)
 - julia 1.9
 - LaTeX (including PGFPlots)
 
