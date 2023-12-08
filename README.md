@@ -12,6 +12,10 @@ This repository contains the code used to prepare the plots and results included
 
 - If you want to start from the raw logs the variable `start_from_raw_logs` in the file `main.jl` needs to be set to `true` and the path to the directory containing the decompressed raw logs needs to be provided. Note, that the raw logs are compressed. The variable `start_from_raw_logs` is set to `false` by default.
 
+## Troubleshooting
+
+The code saves some intermediate results in the `output` directory. This directory has to be deleted in order to rerun the analysis.
+
 ## Warning
 
 The code in this repository has only been tested on the specific dataset provided here. It is not intended to be easily generalizable to arbitrary datasets. The analysis parameters are hard-coded in the directory `input/parameters/`.
