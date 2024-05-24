@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10352176.svg)](https://doi.org/10.5281/zenodo.10352176)
+
 # Singlets in gauge theories with fundamental matter
 This repository contains the code used to prepare the plots and results included in [Singlets in gauge theories with fundamental matter [2304.07191]](https://arxiv.org/abs/2304.07191v1).
 
